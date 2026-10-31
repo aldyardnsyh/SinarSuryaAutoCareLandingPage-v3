@@ -1,0 +1,330 @@
+---
+// 3. Hero — 2 kolom terang (Konsep 3 §B.3)
+// Foto: ulasan asli Google Maps (mobil diangkat lift hidrolik).
+import { Picture } from "astro:assets";
+import { SITE, waLink } from "../data/site";
+import Icon from "./Icon.astro";
+import heroImg from "../assets/photos/cuci-mobil-hidrolik-bojongsoang-lift-hidrolik.jpg";
+
+const wa = waLink(SITE.waBooking);
+---
+
+<section class="hero" id="beranda">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <!-- Status realtime: buka/tutup + jam WIB perangkat pengunjung.
+           Klik menuju section kontak untuk info jadwal lengkap. -->
+      <a
+        class="status-pill"
+        href="#kontak"
+        id="hero-status"
+        title={`Servis mobil: ${SITE.schedule.servis.label} 07.00–17.00 · Cuci & steam: ${SITE.schedule.cuci.label} 07.00–17.00`}
+      >
+        <span class="dot" id="hero-status-dot" aria-hidden="true"></span>
+        <span class="status-pill-text" id="hero-status-text"
+          >Buka setiap hari 07.00–17.00</span
+        >
+        <Icon name="clock" size={17} class="pill-icon" />
+      </a>
+
+      <div class="h1-wrap">
+        <h1>Bengkel yang Nyaman untuk Anda dan Mobil Anda</h1>
+        <div class="squiggle" aria-hidden="true">
+          <svg viewBox="0 0 250 14" fill="none" preserveAspectRatio="none">
+            <path
+              d="M3 10C35 4 65 12 100 8C140 4 185 11 247 6"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"></path>
+          </svg>
+        </div>
+      </div>
+
+      <p class="sub">
+        Servis rutin, ganti oli, perbaikan, sampai cuci hidrolik. Semuanya
+        bisa di satu tempat di Jl. Cijagra No.8, Bojongsoang.
+      </p>
+
+      <div class="cta-row">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary"
+          aria-label="Booking service via WhatsApp Sinar Surya Auto Care">
+          Booking Sekarang
+        </a>
+        <a href={waLink()} target="_blank" rel="noopener" class="btn btn-outline"
+          aria-label="Tanya via WhatsApp Sinar Surya Auto Care">
+          <Icon name="chat" size={20} class="cta-icon" /> Tanya via WhatsApp
+        </a>
+      </div>
+
+      <p class="reassure">
+        <Icon name="shield" size={17} />
+        Keluhan didengar dulu, dijelaskan sebelum dikerjakan
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="blob" aria-hidden="true"></div>
+      <figure class="photo-frame">
+        <Picture
+          src={heroImg}
+          alt="Mobil diangkat lift hidrolik saat dicuci di Sinar Surya Auto Care, Bojongsoang, Bandung"
+          formats={["avif", "webp"]}
+          widths={[420, 640, 840]}
+          sizes="(max-width: 1023px) 92vw, 460px"
+          width={840}
+          height={472}
+          loading="eager"
+          fetchpriority="high"
+          style="object-position:35% 50%" />
+        <span class="float-chip chip-sun" aria-hidden="true">
+          <Icon name="sun" size={18} />
+        </span>
+        <span class="float-chip chip-drop" aria-hidden="true">
+          <Icon name="drop" size={18} />
+        </span>
+        <span class="float-chip chip-wrench" aria-hidden="true">
+          <Icon name="wrench" size={18} />
+        </span>
+      </figure>
+      <p class="photo-note">
+        <Icon name="star" size={14} filled /> 4,7 dari 96 ulasan Google
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-xl) var(--space-lg);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-card);
+    border: 1.5px solid rgba(37, 211, 102, 0.4);
+    color: var(--color-navy);
+    font-family: var(--font-label);
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-rest);
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.25rem;
+  }
+
+  .status-pill:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-wa);
+    box-shadow: var(--shadow-card);
+  }
+
+  .status-pill .pill-icon {
+    color: var(--color-primary);
+  }
+
+  .status-pill .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-wa);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    animation: hero-pulse 2.2s ease-out infinite;
+    flex-shrink: 0;
+  }
+
+  .status-pill .dot.closed {
+    background: #ff8a80;
+    animation: none;
+    box-shadow: none;
+  }
+
+  @keyframes hero-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+
+    70% {
+      box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-pill .dot {
+      animation: none;
+    }
+  }
+
+  .h1-wrap {
+    max-width: 560px;
+  }
+
+  h1 {
+    font-size: clamp(2.125rem, 5.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .squiggle {
+    width: 190px;
+    height: 14px;
+    margin-top: 0.4rem;
+    color: var(--color-accent);
+  }
+
+  .squiggle svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sub {
+    margin-top: 1.1rem;
+    max-width: 480px;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--color-navy-soft);
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .reassure {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+    font-family: var(--font-label);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-navy-soft);
+  }
+
+  .reassure :global(svg) {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .blob {
+    position: absolute;
+    inset: -8% -6%;
+    background: var(--color-wash);
+    border-radius: 36px;
+    transform: rotate(-2deg);
+    z-index: -1;
+  }
+
+  .photo-frame {
+    margin: 0;
+    width: 100%;
+    max-width: 460px;
+    background: var(--color-card);
+    padding: 12px;
+    border-radius: var(--radius-card-lg);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .photo-frame :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+
+  .photo-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+    font-family: var(--font-label);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-navy-soft);
+  }
+
+  .photo-note :global(svg) {
+    color: var(--color-accent);
+  }
+
+  .float-chip {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .chip-sun {
+    top: -16px;
+    left: -14px;
+    color: var(--color-accent);
+  }
+
+  .chip-drop {
+    top: 38%;
+    right: -18px;
+    color: var(--color-primary);
+  }
+
+  .chip-wrench {
+    bottom: -14px;
+    left: 22%;
+    color: var(--color-navy);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 7fr 5fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>
+
+<script>
+  // Status pill hero: buka/tutup realtime dari jam perangkat (WIB),
+  // logika bersama dengan top info bar.
+  import { getStatus, statusText } from "../lib/live-status";
+
+  function updateHeroStatus() {
+    const textEl = document.getElementById("hero-status-text");
+    const dotEl = document.getElementById("hero-status-dot");
+    if (!textEl || !dotEl) return;
+
+    const s = getStatus();
+    textEl.textContent = statusText(s);
+    dotEl.classList.toggle("closed", !s.cuciBuka);
+  }
+
+  updateHeroStatus();
+  setInterval(updateHeroStatus, 30_000);
+</script>
