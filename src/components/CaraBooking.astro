@@ -1,0 +1,133 @@
+---
+// 8. CaraBooking — 3 langkah, angka besar teal (Konsep 3 §B.8)
+import { waLink } from "../data/site";
+import Icon from "./Icon.astro";
+
+const STEPS = [
+  {
+    no: "01",
+    judul: "Chat WhatsApp",
+    sub: "Kirim keluhan & foto mobil Anda.",
+    ikon: "wa",
+  },
+  {
+    no: "02",
+    judul: "Konsultasi & Estimasi",
+    sub: "Kami cek dan jelaskan estimasinya.",
+    ikon: "chat",
+  },
+  {
+    no: "03",
+    judul: "Datang & Servis",
+    sub: "Kerjakan sesuai jadwal yang disepakati.",
+    ikon: "wrench",
+  },
+];
+---
+
+<section class="booking" aria-label="Cara booking servis">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Cara Booking</p>
+      <h2>Gampang Kok, Cuma 3 Langkah</h2>
+      <p class="sub">
+        Tanpa proses rumit. Mulai dari chat WhatsApp sampai mobil dikerjakan
+        sesuai jadwal.
+      </p>
+    </div>
+
+    <div class="grid">
+      {
+        STEPS.map((s) => (
+          <div class="card">
+            <span class="no">{s.no}</span>
+            <span class="bubble">
+              <Icon name={s.ikon} size={24} filled={s.ikon === "wa"} />
+            </span>
+            <h3>{s.judul}</h3>
+            <p>{s.sub}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="cta">
+      <a href={waLink()} target="_blank" rel="noopener" class="btn btn-primary"
+        aria-label="Mulai booking via WhatsApp Sinar Surya Auto Care">
+        <Icon name="wa" size={20} filled /> Mulai Chat WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking {
+    padding-block: var(--section-y);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2.25rem;
+  }
+
+  .card {
+    position: relative;
+    background: var(--color-card);
+    border-radius: var(--radius-card-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-rest);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .no {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: rgba(14, 149, 148, 0.16);
+    line-height: 1;
+  }
+
+  .bubble {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-wash);
+    color: var(--color-wash-deep);
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .card p {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-navy-soft);
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
