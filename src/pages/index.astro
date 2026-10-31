@@ -1,0 +1,41 @@
+---
+// Landing page — komposisi section sesuai urutan PRD §4.1
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopInfoBar from "../components/TopInfoBar.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import TentangKami from "../components/TentangKami.astro";
+import Layanan from "../components/Layanan.astro";
+import TanyaHargaCTA from "../components/TanyaHargaCTA.astro";
+import CaraBooking from "../components/CaraBooking.astro";
+import Testimoni from "../components/Testimoni.astro";
+import ReviewCta from "../components/ReviewCta.astro";
+import Galeri from "../components/Galeri.astro";
+import Faq from "../components/Faq.astro";
+import KontakLokasi from "../components/KontakLokasi.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout>
+  <TopInfoBar />
+  <Navbar />
+  <main id="konten-utama">
+    <Hero />
+    <TrustStrip />
+    <TentangKami />
+    <Layanan />
+    <TanyaHargaCTA />
+    <CaraBooking />
+    <Testimoni />
+    <ReviewCta />
+    <Galeri />
+    <Faq />
+    <KontakLokasi />
+    <CtaBand />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</BaseLayout>
