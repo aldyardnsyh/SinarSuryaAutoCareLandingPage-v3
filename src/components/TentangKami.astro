@@ -1,0 +1,165 @@
+---
+// 5. TentangKami — foto asli interior bengkel + sticker amber,
+// copy hangat tanpa klaim tak terverifikasi (02-copywriting.md §5)
+import { Picture } from "astro:assets";
+import { SITE } from "../data/site";
+import Icon from "./Icon.astro";
+import frontImg from "../assets/photos/tampak-depan-bengkel-bojongsoang-2026.jpg";
+---
+
+<section class="tentang" id="tentang">
+  <div class="container tentang-grid">
+    <div class="visual">
+      <figure class="photo">
+        <Picture
+          src={frontImg}
+          alt="Tampak depan bengkel mobil Sinar Surya Auto Care di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung, Oktober 2026"
+          formats={["avif", "webp"]}
+          widths={[420, 640, 980]}
+          sizes="(max-width: 1023px) 92vw, 520px"
+          width={980}
+          height={653}
+          loading="lazy" />
+      </figure>
+      <span class="sticker">Melayani Bojongsoang dan sekitarnya</span>
+    </div>
+
+    <div class="copy">
+      <p class="eyebrow eyebrow-primary">Tentang Kami</p>
+      <h2>Kenalan Dulu, Yuk</h2>
+      <p class="p">
+        Sinar Surya Auto Care adalah bengkel mobil dan cuci hidrolik di Jl.
+        Cijagra No.8, Bojongsoang, Kabupaten Bandung. Kami melayani perawatan
+        dan perbaikan mobil, mulai dari servis rutin sampai cuci hidrolik dan
+        steam wash.
+      </p>
+      <p class="p">
+        Bagi kami, mobil adalah penunjang aktivitas harian Anda, entah itu
+        untuk bekerja, mengantar anak sekolah, atau berlibur. Karena itu
+        setiap pengerjaan kami utamakan kerapian kerja dan komunikasi yang
+        enak: keluhan didengar dulu, baru dikerjakan.
+      </p>
+
+      <ul class="info">
+        <li>
+          <span class="info-icon"><Icon name="pin" size={18} /></span>
+          {SITE.address.full}
+        </li>
+        <li>
+          <span class="info-icon"><Icon name="clock" size={18} /></span>
+          {SITE.hours.days}, {SITE.hours.open}–{SITE.hours.close} WIB
+        </li>
+        <li>
+          <span class="info-icon"><Icon name="phone" size={18} /></span>
+          <a href={`tel:${SITE.phoneIntl}`}>{SITE.phone}</a> / WhatsApp
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tentang {
+    padding-block: var(--section-y);
+  }
+
+  .tentang-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .visual {
+    position: relative;
+    max-width: 520px;
+  }
+
+  .photo {
+    margin: 0;
+    border-radius: var(--radius-card-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .photo :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .sticker {
+    position: absolute;
+    top: -14px;
+    left: -10px;
+    transform: rotate(-4deg);
+    background: var(--color-accent);
+    color: var(--color-accent-dark);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-card);
+  }
+
+  .eyebrow-primary {
+    color: var(--color-primary);
+  }
+
+  h2 {
+    font-size: clamp(1.625rem, 3.6vw, 2.25rem);
+    font-weight: 800;
+    margin-top: 0.5rem;
+  }
+
+  .p {
+    margin-top: 1rem;
+    color: var(--color-navy-soft);
+  }
+
+  .info {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .info li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-hairline);
+    border-radius: 16px;
+    padding: 0.7rem 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .info-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-wash);
+    color: var(--color-wash-deep);
+    flex-shrink: 0;
+  }
+
+  .info a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration-color: var(--color-primary);
+  }
+
+  @media (min-width: 1024px) {
+    .tentang-grid {
+      grid-template-columns: 6fr 6fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

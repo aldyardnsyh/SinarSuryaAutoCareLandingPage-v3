@@ -1,0 +1,102 @@
+---
+// 4. TrustStrip — 4 pill kartu putih (Konsep 3 §B.4)
+import { TRUST_ITEMS } from "../data/layanan";
+import Icon from "./Icon.astro";
+---
+
+<section class="trust" aria-label="Keunggulan bengkel">
+  <div class="container trust-grid">
+    {
+      TRUST_ITEMS.map((item, i) => (
+        <div class="card">
+          <span class:list={["bubble", `bubble-${i}`]}>
+            <Icon name={item.ikon} size={24} />
+          </span>
+          <div>
+            <h3>{item.judul}</h3>
+            <p>{item.sub}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding-block: var(--space-md);
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-rest);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  .bubble {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .bubble-0 {
+    background: var(--color-wash);
+    color: var(--color-wash-deep);
+  }
+
+  .bubble-1 {
+    background: rgba(242, 183, 5, 0.18);
+    color: var(--color-accent-dark);
+  }
+
+  .bubble-2 {
+    background: rgba(14, 149, 148, 0.12);
+    color: var(--color-primary);
+  }
+
+  .bubble-3 {
+    background: rgba(34, 54, 79, 0.08);
+    color: var(--color-navy);
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-navy-soft);
+  }
+
+  @media (min-width: 640px) {
+    .trust-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .trust-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
