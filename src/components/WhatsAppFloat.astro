@@ -1,0 +1,90 @@
+---
+// 14. WhatsAppFloat — bubble mengambang kanan-bawah (Konsep 3 §B.13)
+import { SITE, waLink } from "../data/site";
+import Icon from "./Icon.astro";
+---
+
+<a
+  href={waLink(SITE.waConsult)}
+  target="_blank"
+  rel="noopener"
+  class="wa-float"
+  aria-label="Konsultasi santai via WhatsApp Sinar Surya Auto Care"
+>
+  <span class="ring" aria-hidden="true"></span>
+  <span class="icon"><Icon name="wa" size={26} filled /></span>
+  <span class="text">Konsultasi Santai via WA</span>
+</a>
+
+<style>
+  .wa-float {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--color-wa);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 14px 34px -4px rgba(37, 211, 102, 0.45);
+    transition: transform 0.15s ease, background-color 0.2s ease;
+  }
+
+  .wa-float:hover {
+    background: var(--color-wa-dark);
+    transform: scale(1.03);
+  }
+
+  .icon {
+    display: grid;
+    place-items: center;
+  }
+
+  .ring {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .text {
+      display: none;
+    }
+
+    .wa-float {
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ring {
+      display: block;
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-pill);
+      animation: pulse 2.4s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+  }
+</style>

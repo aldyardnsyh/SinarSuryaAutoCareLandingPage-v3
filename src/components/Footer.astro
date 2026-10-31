@@ -1,0 +1,192 @@
+---
+// 13. Footer — navy, rounded top (Konsep 3 §B.12), data asli Maps
+import { SITE, waLink } from "../data/site";
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+
+const YEAR = new Date().getFullYear();
+
+const NAV = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Galeri", href: "#galeri" },
+  { label: "Kontak", href: "#kontak" },
+];
+
+const sosmed = [
+  { label: "Facebook", url: SITE.social.facebook },
+  { label: "Instagram", url: SITE.social.instagram },
+].filter((s) => s.url); // [DATA-CLIENT:link-sosmed]
+---
+
+<footer class="footer">
+  <div class="container grid">
+    <div class="brand-col">
+      <a href="#beranda" class="brand" aria-label={`${SITE.name}, kembali ke atas`}>
+        <Logo size={44} />
+        <span class="brand-text">
+          <span class="brand-name">Sinar Surya</span>
+          <span class="brand-sub">Auto Care &amp; Wash</span>
+        </span>
+      </a>
+      <p class="desc">
+        Bengkel mobil dan cuci hidrolik di Jl. Cijagra No.8, Bojongsoang,
+        Kab. Bandung. Servis rutin, perbaikan, sampai steam wash, semuanya
+        dalam satu tempat.
+      </p>
+    </div>
+
+    <nav class="col" aria-label="Navigasi footer">
+      <h3>Navigasi</h3>
+      <ul>
+        {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="col">
+      <h3>Jam Operasional</h3>
+      <p class="hours">
+        {SITE.hours.days}<br />
+        {SITE.hours.open}–{SITE.hours.close} WIB
+      </p>
+      <p class="wa-line">
+        <a href={waLink()} target="_blank" rel="noopener" class="wa-link">
+          <Icon name="wa" size={16} filled /> Chat WhatsApp
+        </a>
+      </p>
+    </div>
+
+    <div class="col">
+      <h3>Kontak</h3>
+      <ul>
+        <li><a href={`tel:${SITE.phoneIntl}`}>{SITE.phone}</a></li>
+        <li>{SITE.address.short}</li>
+        {
+          sosmed.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="container bottom-inner">
+      <p>© {YEAR} {SITE.name} · Bojongsoang, Bandung</p>
+      <p class="tag">Bengkel keluarga untuk mobil keluarga Anda</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-navy);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: clamp(24px, 4vw, 48px) clamp(24px, 4vw, 48px) 0 0;
+    margin-top: calc(-1 * clamp(24px, 4vw, 48px));
+    padding-top: calc(var(--space-xl) + clamp(24px, 4vw, 48px));
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .brand-name {
+    display: block;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.15rem;
+  }
+
+  .brand-sub {
+    display: block;
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .desc {
+    margin-top: 1rem;
+    max-width: 320px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  h3 {
+    color: #fff;
+    font-family: var(--font-label);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+
+  .hours {
+    font-size: 0.9rem;
+  }
+
+  .wa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-block: 1.25rem;
+  }
+
+  .bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: 4fr 2.5fr 3fr 3fr;
+    }
+  }
+</style>

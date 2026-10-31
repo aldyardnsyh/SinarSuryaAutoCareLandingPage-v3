@@ -1,0 +1,68 @@
+---
+// 12. CtaBand — band penutup sebelum footer (02-copywriting.md §12)
+import { SITE, waLink } from "../data/site";
+import Icon from "./Icon.astro";
+---
+
+<section class="ctaband" aria-label="Ajakan terakhir menghubungi bengkel">
+  <div class="container inner">
+    <h2>Mobil Anda butuh servis atau sekadar cuci bersih?</h2>
+    <p>Chat atau telepon saja, kami bantu cek kondisi mobilnya.</p>
+    <div class="row">
+      <a href={waLink(SITE.waWash)} target="_blank" rel="noopener" class="btn btn-wa"
+        aria-label="Chat WhatsApp Sinar Surya Auto Care untuk servis atau cuci mobil">
+        <Icon name="wa" size={20} filled /> Chat WhatsApp
+      </a>
+      <a href={`tel:${SITE.phoneIntl}`} class="btn btn-outline btn-light">
+        <Icon name="phone" size={18} /> Telepon {SITE.phone}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ctaband {
+    background: var(--color-navy);
+    color: #fff;
+    padding-block: var(--space-lg);
+    /* menyambung mulus dengan section kontak navy di atasnya */
+    margin-top: calc(-1 * var(--space-xl));
+  }
+
+  .inner {
+    text-align: center;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3.4vw, 2.125rem);
+    font-weight: 800;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  p {
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .btn-light {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: none;
+  }
+
+  .btn-light:hover {
+    border-color: #fff;
+    color: var(--color-accent);
+  }
+</style>
