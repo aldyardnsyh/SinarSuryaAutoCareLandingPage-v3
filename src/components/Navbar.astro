@@ -1,0 +1,226 @@
+---
+// 2. Navbar — sticky putih, shadow lembut, hamburger mobile (Konsep 3 §B.2)
+import { SITE, waLink } from "../data/site";
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+
+const MENU = [
+  { label: "Beranda", href: "#beranda" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Galeri", href: "#galeri" },
+  { label: "Kontak", href: "#kontak" },
+];
+---
+
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#beranda" class="brand" aria-label={`${SITE.name}, kembali ke atas`}>
+      <Logo size={42} />
+      <span class="brand-text">
+        <span class="brand-name">Sinar Surya</span>
+        <span class="brand-sub">Auto Care &amp; Wash</span>
+      </span>
+    </a>
+
+    <nav class="menu" id="nav-menu" aria-label="Navigasi utama">
+      {MENU.map((m) => <a href={m.href} class="menu-link">{m.label}</a>)}
+      <a
+        href={waLink(SITE.waBooking)}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-wa nav-wa-mobile"
+        aria-label="Chat WhatsApp Sinar Surya Auto Care">
+        <Icon name="wa" size={18} filled /> Chat WhatsApp
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href={waLink(SITE.waBooking)} target="_blank" rel="noopener" class="btn btn-primary btn-nav-cta">
+        Booking Service
+      </a>
+      <button
+        class="hamburger"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Buka menu navigasi">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-rest);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 76px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .brand-name {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-navy);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sub {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-navy-soft);
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .menu-link {
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-navy-soft);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .menu-link:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .btn-nav-cta {
+    min-height: 44px;
+    padding: 0 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-wa-mobile {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: none;
+    border: 1.5px solid var(--color-hairline);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--color-navy);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (max-width: 900px) {
+    .menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #fff;
+      box-shadow: var(--shadow-card);
+      padding: 0.5rem 1.25rem 1.25rem;
+      display: none;
+    }
+
+    .menu.open {
+      display: flex;
+    }
+
+    .menu-link {
+      padding: 0.9rem 0.25rem;
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .nav-wa-mobile {
+      display: inline-flex;
+      margin-top: 1rem;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .btn-nav-cta {
+      display: none;
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  // Interaksi hamburger — vanilla JS sesuai PRD §4.3
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("open") ?? false;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
+  });
+
+  // Tutup menu setelah link diklik (navigasi anchor)
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      menu.classList.remove("open");
+      toggle?.setAttribute("aria-expanded", "false");
+    })
+  );
+</script>

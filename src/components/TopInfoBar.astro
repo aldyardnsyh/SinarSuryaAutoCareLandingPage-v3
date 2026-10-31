@@ -1,0 +1,142 @@
+---
+// 1. TopInfoBar — strip navy dengan JAM WIB REALTIME dari perangkat
+// pengunjung + status buka/tutup yang dihitung otomatis:
+//   Servis mobil : Senin-Sabtu (Minggu tidak tersedia)
+//   Cuci & steam : setiap hari
+// tanpa JS, tampil fallback statis.
+import { SITE } from "../data/site";
+import Icon from "./Icon.astro";
+---
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span class="item">
+      <Icon name="pin" size={15} />
+      {SITE.address.short}
+    </span>
+    <span
+      class="item status"
+      id="status-bar"
+      title={`Servis mobil: ${SITE.schedule.servis.label} 07.00–17.00 · Cuci & steam: ${SITE.schedule.cuci.label} 07.00–17.00`}
+    >
+      <span class="dot" id="status-dot" aria-hidden="true"></span>
+      <span id="status-text">Buka setiap hari 07.00–17.00</span>
+    </span>
+    <a class="item" href={`tel:${SITE.phoneIntl}`}>
+      <Icon name="phone" size={15} />
+      {SITE.phone}
+    </a>
+  </div>
+</div>
+
+<style>
+  .topbar {
+    background: var(--color-navy);
+    color: #fff;
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 40px;
+  }
+
+  .item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+    color: #e8eef7;
+    text-decoration: none;
+  }
+
+  .item :global(svg) {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  a.item:hover {
+    color: var(--color-accent);
+  }
+
+  .status {
+    gap: 0.45rem;
+    cursor: help;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-wa);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    animation: pulse 2.2s ease-out infinite;
+    flex-shrink: 0;
+  }
+
+  .dot.closed {
+    background: #ff8a80;
+    animation: none;
+    box-shadow: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+
+    70% {
+      box-shadow: 0 0 0 7px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .item:nth-child(2) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .topbar-inner {
+      justify-content: center;
+    }
+
+    .item:nth-child(3) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Status buka/tutup realtime berdasarkan perangkat pengunjung,
+  // dikonversi ke WIB (Asia/Jakarta).
+  import { getStatus, statusText } from "../lib/live-status";
+
+  function updateStatus() {
+    const textEl = document.getElementById("status-text");
+    const dotEl = document.getElementById("status-dot");
+    if (!textEl || !dotEl) return;
+
+    const s = getStatus();
+    textEl.textContent = statusText(s);
+    dotEl.classList.toggle("closed", !s.cuciBuka);
+  }
+
+  updateStatus();
+  setInterval(updateStatus, 30_000);
+</script>
