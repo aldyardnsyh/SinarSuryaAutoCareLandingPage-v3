@@ -46,7 +46,7 @@ Semua terpusat di `src/data/site.ts`:
 |---|---|
 | Alamat | Jl. Cijagra No.8, Bojongsoang, Kec. Bojongsoang, Kab. Bandung, Jawa Barat 40288 |
 | Telepon / WhatsApp aktif | **0812-2022-203** (628122022203) — dari client, dipakai di semua tombol tel & WA |
-| Telepon lama di Maps | (022) 7502999 masih tampil di listing Google Maps — minta pemilik memperbarui nomor di Profil Bisnis Google agar NAP konsisten |
+| Telepon lama di Maps | Listing Google Maps masih menampilkan nomor lama (sudah tidak aktif) — minta pemilik memperbarui nomor di Profil Bisnis Google agar NAP konsisten |
 | Jam operasional | Servis mobil: **Senin–Sabtu** 07.00–17.00 (Minggu tidak tersedia) · Cuci & steam: **setiap hari** 07.00–17.00. Konfigurasi di `site.ts` → `schedule` |
 | Pin Maps | lat -6.9848264, lng 107.6329325 |
 | Rating | 4,7 ★ dari 96 ulasan Google |
