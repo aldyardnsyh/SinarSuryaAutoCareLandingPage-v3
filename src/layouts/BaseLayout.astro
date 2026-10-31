@@ -1,0 +1,163 @@
+---
+// BaseLayout — <head>, SEO meta, Open Graph, JSON-LD LocalBusiness,
+// font self-host (@fontsource), dan design tokens.
+// Sumber: 03-seo-dan-indexing.md §2 & §3. Data dari Google Maps resmi.
+import "../styles/tokens.css";
+import "@fontsource/plus-jakarta-sans/400.css";
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/plus-jakarta-sans/800.css";
+import "@fontsource/nunito-sans/700.css";
+import { SITE } from "../data/site";
+import { FAQS } from "../components/Faq.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const title =
+  Astro.props.title ??
+  "Bengkel Mobil & Cuci Hidrolik Bojongsoang, Bandung — Sinar Surya Auto Care";
+const description =
+  Astro.props.description ??
+  "Sinar Surya Auto Care, bengkel mobil & cuci hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Servis rutin, ganti oli, AC, kaki-kaki, sampai steam wash. Buka setiap hari 07.00-17.00. Chat WhatsApp untuk info harga.";
+
+const canonical = new URL(Astro.url.pathname, SITE.domain);
+const ogImage = new URL("/og-image.jpg", SITE.domain).href;
+
+// JSON-LD AutoRepair — data dari Google Maps resmi bengkel
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "@id": `${SITE.domain}/#business`,
+  name: SITE.name,
+  description:
+    "Bengkel mobil dan cuci hidrolik di Bojongsoang, Kabupaten Bandung. Servis rutin, ganti oli, service AC, kaki-kaki, kelistrikan, cuci mobil hidrolik, steam wash, vacuum dan detailing.",
+  url: SITE.domain,
+  telephone: SITE.phoneIntl,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: "Bojongsoang",
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: "ID",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: SITE.geo.lat,
+    longitude: SITE.geo.lng,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "07:00",
+      closes: "17:00",
+    },
+  ],
+  image: ogImage,
+  // Rating asli dari listing Google Maps bengkel (bukan angka buatan)
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.7",
+    reviewCount: String(SITE.rating.count),
+    bestRating: "5",
+  },
+  // [DATA-CLIENT:link-*] — isi sameAs setelah link sosmed client masuk
+  sameAs: [SITE.social.facebook, SITE.social.instagram].filter(Boolean),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Layanan Sinar Surya Auto Care",
+    itemListElement: [
+      "Servis Rutin & Tune Up",
+      "Ganti Oli & Filter",
+      "Service AC Mobil",
+      "Kaki-kaki & Rem",
+      "Kelistrikan & Aki",
+      "Cuci Mobil Hidrolik",
+      "Steam Wash Interior",
+      "Vacuum & Detailing",
+    ].map((nama) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: nama },
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0e9594" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / WhatsApp & Facebook share preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sinar Surya Auto Care — Bengkel Mobil & Cuci Hidrolik Bojongsoang" />
+    <meta property="og:description" content="Servis rutin, perbaikan, hingga cuci mobil hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung." />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- FAQPage: jawaban sama dengan section FAQ, untuk rich results Google -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQS.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      })}
+    />
+  </head>
+  <body>
+    <a
+      href="#konten-utama"
+      class="skip-link"
+    >
+      Langsung ke konten utama
+    </a>
+    <slot />
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        z-index: 100;
+        background: var(--color-navy);
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0 0 12px 0;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
+  </body>
+</html>
