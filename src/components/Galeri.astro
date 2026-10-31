@@ -1,0 +1,209 @@
+---
+// 10. Galeri — foto ASLI bengkel (ulasan Google Maps + foto dari pemilik).
+// Ukuran kartu seragam (4:3) agar rapi; chip kategori berwarna +
+// caption overlay + efek zoom saat hover supaya tidak boring.
+import { Picture } from "astro:assets";
+
+const FOTOS = [
+  {
+    src: import("../assets/photos/cuci-mobil-hidrolik-bojongsoang-lift-hidrolik.jpg"),
+    alt: "Mobil diangkat lift hidrolik saat dicuci bagian bawah di Sinar Surya Auto Care Bojongsoang",
+    caption: "Cuci hidrolik sampai bagian bawah",
+    chip: "Cuci Hidrolik",
+    chipColor: "amber",
+    tilt: "-1deg",
+  },
+  {
+    src: import("../assets/photos/cuci-mobil-busa-bojongsoang.jpg"),
+    alt: "Mobil dilapisi busa saat dicuci di area wash Sinar Surya Auto Care Bojongsoang",
+    caption: "Proses cuci busa yang teliti",
+    chip: "Area Wash",
+    chipColor: "amber",
+    tilt: "1deg",
+  },
+  {
+    src: import("../assets/photos/area-cuci-bengkel-bojongsoang.jpg"),
+    alt: "Suasana area cuci Sinar Surya Auto Care dengan beberapa mobil pelanggan",
+    caption: "Suasana area cuci",
+    chip: "Area Cuci",
+    chipColor: "amber",
+    tilt: "-1.5deg",
+  },
+  {
+    src: import("../assets/photos/cuci-mobil-detail-bojongsoang.jpg"),
+    alt: "Mobil pelanggan dengan pintu terbuka saat proses detailing di dalam bengkel Sinar Surya Auto Care",
+    caption: "Detailing di dalam bengkel",
+    chip: "Detailing",
+    chipColor: "amber",
+    tilt: "1.5deg",
+  },
+  {
+    src: import("../assets/photos/servis-perbaikan-lift-bojongsoang.jpg"),
+    alt: "Mekanik Sinar Surya Auto Care memperbaiki komponen mobil di atas lift",
+    caption: "Perbaikan di area servis",
+    chip: "Servis",
+    chipColor: "teal",
+    tilt: "-1deg",
+  },
+  {
+    src: import("../assets/photos/servis-mobil-pelanggan-bojongsoang.jpg"),
+    alt: "Mobil pelanggan diservis dan dibersihkan interiornya di Sinar Surya Auto Care",
+    caption: "Mobil pelanggan diservis",
+    chip: "Servis",
+    chipColor: "teal",
+    tilt: "1deg",
+  },
+  {
+    src: import("../assets/photos/perbaikan-mesin-toyota-bojongsoang.jpg"),
+    alt: "Mekanik memeriksa ruang mesin mobil Toyota di bengkel Sinar Surya Auto Care",
+    caption: "Pemeriksaan mesin",
+    chip: "Servis",
+    chipColor: "teal",
+    tilt: "-1.5deg",
+  },
+  {
+    src: import("../assets/photos/detailing-mesin-toyota-bojongsoang.jpg"),
+    alt: "Hasil detailing ruang mesin mobil Toyota yang bersih di Sinar Surya Auto Care Bojongsoang",
+    caption: "Hasil detailing mesin",
+    chip: "Detailing",
+    chipColor: "amber",
+    tilt: "1.5deg",
+  },
+] as const;
+---
+
+<section class="galeri" id="galeri">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Galeri</p>
+      <h2>Sekilas Bengkel Kami</h2>
+      <p class="sub">
+        Suasana pengerjaan di Sinar Surya Auto Care, dari foto asli bengkel
+        dan ulasan Google Maps.
+      </p>
+    </div>
+
+    <div class="grid">
+      {
+        FOTOS.map((f) => (
+          <figure class="gcard" style={`--tilt:${f.tilt}`}>
+            <Picture
+              src={f.src}
+              alt={f.alt}
+              formats={["avif", "webp"]}
+              widths={[400, 600, 800]}
+              sizes="(max-width: 640px) 92vw, (max-width: 1023px) 46vw, 280px"
+              width={800}
+              height={600}
+              loading="lazy" />
+            <span class:list={["chip", f.chipColor]}>{f.chip}</span>
+            <figcaption>{f.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .galeri {
+    padding-block: var(--section-y);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 3vw, 1.5rem);
+    margin-top: 2.25rem;
+  }
+
+  /* kartu seragam: semua foto dipotong 4:3, tinggi kartu sama */
+  .gcard {
+    position: relative;
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transform: rotate(var(--tilt));
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .gcard:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .gcard :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .gcard:hover :global(img) {
+    transform: scale(1.06);
+  }
+
+  /* gradasi hangat di bawah foto untuk keterbacaan caption */
+  .gcard::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(34, 54, 79, 0.75) 100%
+    );
+    pointer-events: none;
+  }
+
+  .chip {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    color: #fff;
+    box-shadow: var(--shadow-rest);
+  }
+
+  .chip.amber {
+    background: var(--color-accent);
+    color: var(--color-accent-dark);
+  }
+
+  .chip.teal {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 0.8rem 1rem;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    figcaption {
+      font-size: 0.875rem;
+    }
+  }
+</style>
