@@ -1,0 +1,135 @@
+---
+// FAQ — pertanyaan yang sering diketik orang di Google soal bengkel di
+// Bojongsoang (sumber keyword bank 02-copywriting.md §15 + riset SERP).
+// Pakai <details> native: interaktif tanpa JS, ramah SEO.
+// Jawaban yang sama juga di-embed sebagai FAQPage JSON-LD di BaseLayout.
+import Icon from "./Icon.astro";
+
+export interface Faq {
+  q: string;
+  a: string;
+}
+
+export const FAQS: Faq[] = [
+  {
+    q: "Di mana lokasi Sinar Surya Auto Care?",
+    a: "Kami di Jl. Cijagra No.8, Bojongsoang, Kec. Bojongsoang, Kab. Bandung, Jawa Barat 40288. Mudah dijangkau dari Bojongsoang, Dayeuhkolot, Baleendah, dan Buahbatu. Peta lengkapnya ada di bagian Kontak di bawah.",
+  },
+  {
+    q: "Apakah buka hari Minggu?",
+    a: "Cuci mobil hidrolik dan steam wash buka setiap hari, termasuk Minggu, pukul 07.00 sampai 17.00 WIB. Khusus servis dan perbaikan mobil hanya Senin sampai Sabtu.",
+  },
+  {
+    q: "Apa bedanya cuci hidrolik dengan cuci mobil biasa?",
+    a: "Pada cuci hidrolik, mobil diangkat dengan lift sehingga bagian bawah mobil (kaso, sasis, kolong) ikut tercuci bersih. Cuci biasa biasanya hanya membersihkan bagian luar dan atas saja. Kami juga melayani steam wash interior yang higienis dan tidak lembap.",
+  },
+  {
+    q: "Berapa harga servis atau cuci mobilnya?",
+    a: "Harga menyesuaikan kondisi dan tipe kendaraan, jadi tidak kami pasang di website. Chat WhatsApp kami, kirim keluhan atau foto mobilnya, nanti kami bantu cek dan jelaskan estimasinya sebelum pengerjaan.",
+  },
+  {
+    q: "Bagaimana cara booking servis di Sinar Surya Auto Care?",
+    a: "Cuma tiga langkah: chat WhatsApp kami, konsultasi keluhan sampai dapat estimasi, lalu datang sesuai jadwal yang disepakati. Bisa lewat tombol Booking Sekarang di halaman ini.",
+  },
+  {
+    q: "Apakah hanya melayani mobil di Bojongsoang saja?",
+    a: "Bengkel kami memang di Bojongsoang, tapi pelanggan datang juga dari Dayeuhkolot, Baleendah, Buahbatu, dan area Bandung Raya lainnya. Lokasi kami tepat di Jl. Cijagra No.8 yang mudah dijangkau.",
+  },
+];
+---
+
+<section class="faq" id="faq" aria-label="Pertanyaan yang sering diajukan">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Tanya Jawab</p>
+      <h2>Pertanyaan yang Sering Diajukan</h2>
+      <p class="sub">
+        Jawaban singkat soal lokasi, jam buka, harga, dan cara booking di
+        bengkel mobil &amp; cuci hidrolik Bojongsoang.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {
+        FAQS.map((f, i) => (
+          <details class="faq-item" open={i === 0}>
+            <summary>
+              <span class="q">{f.q}</span>
+              <span class="chev" aria-hidden="true">
+                <Icon name="arrow" size={18} />
+              </span>
+            </summary>
+            <p class="a">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding-block: var(--section-y);
+  }
+
+  .faq-list {
+    max-width: 780px;
+    margin: 2.25rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    background: var(--color-card);
+    border: 1px solid rgba(34, 54, 79, 0.08);
+    border-radius: 16px;
+    box-shadow: var(--shadow-rest);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .faq-item:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-navy);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .chev {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-wash);
+    color: var(--color-wash-deep);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .chev {
+    transform: rotate(90deg);
+  }
+
+  .a {
+    padding: 0 1.25rem 1.1rem;
+    color: var(--color-navy-soft);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+</style>
