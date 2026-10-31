@@ -1,0 +1,201 @@
+---
+// 6. Layanan — Grup A (kartu putih) & Grup B (kartu wash blue)
+// (Konsep 3 §B.6; tanpa layanan motor)
+import { LAYANAN } from "../data/layanan";
+import { waLink, SITE } from "../data/site";
+import Icon from "./Icon.astro";
+
+const grupA = LAYANAN.filter((l) => l.group === "servis");
+const grupB = LAYANAN.filter((l) => l.group === "cuci");
+const tanyaHarga = (nama: string) =>
+  waLink(`${SITE.waPrice} ${nama}.`);
+---
+
+<section class="layanan" id="layanan">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Layanan Bengkel Mobil &amp; Cuci Hidrolik</p>
+      <h2>Mau Kami Bantu Apa Hari Ini?</h2>
+      <p class="sub">
+        Pilih kategori yang sesuai kebutuhan mobil Anda. Semuanya dikerjakan
+        dengan teliti dan komunikasi yang enak.
+      </p>
+    </div>
+
+    <!-- Tab visual (v1: dua grup tampil berdampingan — PRD §4.2 / Konsep 3 §B.6) -->
+    <div class="tabs" aria-hidden="true">
+      <span class="tab tab-active"><Icon name="wrench" size={17} /> Servis &amp; Perbaikan</span>
+      <span class="tab"><Icon name="drop" size={17} /> Cuci Hidrolik &amp; Steam</span>
+    </div>
+
+    <h3 class="grup-title">Servis &amp; Perbaikan</h3>
+    <div class="grid">
+      {
+        grupA.map((l) => (
+          <article class="card">
+            <span class="bubble"><Icon name={l.ikon} size={26} /></span>
+            <h4>{l.nama}</h4>
+            <p>{l.deskripsi}</p>
+            <a
+              href={tanyaHarga(l.nama)}
+              target="_blank"
+              rel="noopener"
+              class="link"
+              aria-label={`Tanya harga ${l.nama} via WhatsApp`}>
+              Tanya harga via WhatsApp <Icon name="arrow" size={16} />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <h3 class="grup-title grup-title-cuci">Cuci Hidrolik &amp; Steam</h3>
+    <div class="grid">
+      {
+        grupB.map((l) => (
+          <article class="card card-wash">
+            <span class="bubble bubble-wash"><Icon name={l.ikon} size={26} /></span>
+            <h4>{l.nama}</h4>
+            <p>{l.deskripsi}</p>
+            <a
+              href={tanyaHarga(l.nama)}
+              target="_blank"
+              rel="noopener"
+              class="link"
+              aria-label={`Tanya harga ${l.nama} via WhatsApp`}>
+              Tanya harga via WhatsApp <Icon name="arrow" size={16} />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .layanan {
+    padding-block: var(--section-y);
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--color-hairline);
+    background: var(--color-card);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-navy-soft);
+  }
+
+  .tab-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .grup-title {
+    margin: 2.5rem 0 1.1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-navy);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-card);
+    border: 1px solid rgba(34, 54, 79, 0.06);
+    border-radius: var(--radius-card-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-rest);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-wash {
+    background: var(--color-wash);
+    border-color: transparent;
+  }
+
+  .bubble {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-wash);
+    color: var(--color-wash-deep);
+    margin-bottom: 1rem;
+  }
+
+  .bubble-wash {
+    background: var(--color-card);
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .card p {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-navy-soft);
+    flex-grow: 1;
+  }
+
+  .card-wash p {
+    color: rgba(34, 54, 79, 0.75);
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1.1rem;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
