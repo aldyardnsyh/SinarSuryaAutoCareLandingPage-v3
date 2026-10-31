@@ -37,7 +37,7 @@ const overlay = Buffer.from(`
   <!-- teks utama -->
   <text x="70" y="440" font-family="DejaVu Sans, Arial, sans-serif" font-size="56" font-weight="bold" fill="#FFFFFF">Sinar Surya Auto Care</text>
   <text x="70" y="496" font-family="DejaVu Sans, Arial, sans-serif" font-size="30" font-weight="bold" fill="#F2B705">Bengkel Mobil &amp; Cuci Hidrolik Bojongsoang</text>
-  <text x="70" y="552" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" fill="#cdd9e8">Jl. Cijagra No.8, Bojongsoang, Kab. Bandung · 022-7502999</text>
+  <text x="70" y="552" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" fill="#cdd9e8">Jl. Cijagra No.8, Bojongsoang, Kab. Bandung · 0812-2022-203</text>
   <text x="70" y="590" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#9fd8d7">Servis Senin-Sabtu · Cuci &amp; steam setiap hari 07.00-17.00</text>
 </svg>`);
 

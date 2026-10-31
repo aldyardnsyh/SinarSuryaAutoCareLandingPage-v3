@@ -2,8 +2,9 @@
 // site.ts — SATU-SATUNYA tempat data bisnis.
 // Data di bawah sudah diverifikasi dari Google Maps resmi
 // (link: https://maps.app.goo.gl/q5tPToCPzbebyi2z8, diakses 2026-10-31):
-// telepon (022) 7502999, buka setiap hari 07.00-17.00,
+// buka setiap hari 07.00-17.00,
 // Jl. Cijagra No.8, Bojongsoang, Kab. Bandung 40288.
+// Telepon/WA aktif dari client (2026-11): 0812-2022-203.
 // ============================================================
 
 export const SITE = {
@@ -12,12 +13,12 @@ export const SITE = {
   tagline: "Bengkel Mobil & Cuci Hidrolik · Bojongsoang",
   // Domain resmi dari pemilik — samakan dengan `site` di astro.config.mjs
   domain: "https://bengkelmobilbojongsoang.web.id",
-  phone: "022-7502999",
-  phoneIntl: "+62227502999",
-  // Nomor WhatsApp resmi bengkel (022-7502999 → 62227502999).
-  // Catatan: jika nomor kantor ternyata belum aktif di WhatsApp,
-  // ganti dengan nomor WA aktif dari pemilik.
-  whatsapp: "62227502999",
+  // Nomor telepon aktif dari client (sekaligus WhatsApp) — 0812-2022-203.
+  // Catatan: listing Google Maps masih menampilkan 022-7502999; minta
+  // pemilik memperbarui nomor di Profil Bisnis Google agar NAP konsisten.
+  phone: "0812-2022-203",
+  phoneIntl: "+628122022203",
+  whatsapp: "628122022203",
   // Template pesan: selalu diawali nama bengkel + lokasinya,
   // sisanya menyesuaikan tombol yang diklik (booking / tanya /
   // konsultasi / tanya harga / cuci).
