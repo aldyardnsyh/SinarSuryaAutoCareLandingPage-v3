@@ -1,0 +1,357 @@
+---
+// 9. Testimoni — slider ulasan ASLI dari Google Maps bengkel
+// (https://maps.app.goo.gl/q5tPToCPzbebyi2z8, diakses 2026-10-31)
+// + kartu ringkasan rating & tombol menuju semua ulasan di Google Maps.
+// Auto-rotate via vanilla JS kecil; berhenti saat hover/fokus dan
+// menghormati prefers-reduced-motion.
+import { TESTIMONI } from "../data/testimoni";
+import { SITE, mapLinkUrl } from "../data/site";
+import Icon from "./Icon.astro";
+
+const AVATAR_COLORS = ["#0E9594", "#F2B705", "#22364F", "#0E9594"];
+---
+
+<section class="testimoni" aria-label="Ulasan pelanggan di Google Maps">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Ulasan Google</p>
+      <h2>Kata Pelanggan di Google Maps</h2>
+      <p class="sub">
+        Ulasan asli dari pengunjung bengkel Sinar Surya Auto Care
+        Bojongsoang. Sering disebut: <em>cuci</em>, <em>pelayanan</em>,
+        <em>QRIS</em>, <em>harga</em>.
+      </p>
+    </div>
+
+    <div
+      class="slider"
+      id="testi-slider"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Ulasan pelanggan">
+      <div class="track" id="testi-track" tabindex="0">
+        {
+          TESTIMONI.map((t, i) => (
+            <figure class="card" aria-label={`Ulasan ${i + 1} dari ${TESTIMONI.length + 1}`}>
+              <div class="stars" aria-label={`${t.bintang} bintang dari 5`}>
+                {Array.from({ length: 5 }).map((_, s) => (
+                  <Icon name="star" size={16} filled class={s < t.bintang ? "star-on" : "star-off"} />
+                ))}
+              </div>
+              <blockquote>“{t.quote}”</blockquote>
+              <figcaption>
+                <span class="avatar" style={`background:${AVATAR_COLORS[i % 4]}`}>
+                  {t.nama.charAt(0)}
+                </span>
+                <span>
+                  <strong>{t.nama}</strong>
+                  <small>Ulasan Google</small>
+                </span>
+              </figcaption>
+            </figure>
+          ))
+        }
+
+        <a class="card rating-card" href={mapLinkUrl} target="_blank" rel="noopener"
+          aria-label={`Lihat semua ${SITE.rating.count} ulasan Sinar Surya Auto Care di Google Maps, rating ${SITE.rating.score}`}>
+          <span class="score">{SITE.rating.score}</span>
+          <span class="score-stars" aria-hidden="true">
+            {Array.from({ length: 5 }).map(() => <Icon name="star" size={18} filled class="star-on" />)}
+          </span>
+          <span class="score-count">{SITE.rating.count} ulasan di Google</span>
+          <span class="score-link">
+            Lihat semua ulasan <Icon name="arrow" size={16} />
+          </span>
+        </a>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="nav-btn" id="testi-prev" aria-label="Ulasan sebelumnya">
+          <Icon name="arrow" size={18} class="flip" />
+        </button>
+        <div class="dots" id="testi-dots" aria-hidden="true"></div>
+        <button type="button" class="nav-btn" id="testi-next" aria-label="Ulasan berikutnya">
+          <Icon name="arrow" size={18} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimoni {
+    padding-block: var(--section-y);
+    background: var(--color-wash);
+    border-radius: clamp(24px, 4vw, 48px);
+    margin-inline: max(var(--gutter), (100vw - var(--container)) / 2);
+  }
+
+  .slider {
+    margin-top: 2.25rem;
+  }
+
+  .track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-card-lg);
+  }
+
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    margin: 0;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    background: var(--color-card);
+    border-radius: var(--radius-card-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-rest);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stars {
+    display: flex;
+    gap: 0.15rem;
+  }
+
+  .stars :global(.star-on) {
+    color: var(--color-accent);
+  }
+
+  .stars :global(.star-off) {
+    color: rgba(34, 54, 79, 0.15);
+  }
+
+  blockquote {
+    margin: 0.9rem 0 1.2rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-navy);
+    flex-grow: 1;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  strong {
+    display: block;
+    font-size: 0.9375rem;
+  }
+
+  small {
+    color: var(--color-navy-soft);
+    font-size: 0.8125rem;
+  }
+
+  /* kartu ringkasan rating Google */
+  .rating-card {
+    text-decoration: none;
+    align-items: flex-start;
+  }
+
+  .score {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-navy);
+    line-height: 1;
+  }
+
+  .score-stars {
+    display: flex;
+    gap: 0.15rem;
+    margin-top: 0.5rem;
+  }
+
+  .score-stars :global(.star-on) {
+    color: var(--color-accent);
+  }
+
+  .score-count {
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--color-navy-soft);
+  }
+
+  .score-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .nav-btn {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(34, 54, 79, 0.2);
+    background: var(--color-card);
+    color: var(--color-navy);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .nav-btn :global(.flip) {
+    transform: scaleX(-1);
+  }
+
+  .dots {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .dots :global(.dot) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(34, 54, 79, 0.25);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .dots :global(.dot.active) {
+    background: var(--color-primary);
+    transform: scale(1.2);
+  }
+
+  @media (min-width: 720px) {
+    .card {
+      flex-basis: calc((100% - 2rem) / 3);
+    }
+  }
+</style>
+
+<script>
+  // Slider ulasan: bergeser per HALAMAN (satu halaman = kartu yang terlihat),
+  // sehingga jumlah dot sedikit (2 halaman di desktop). Auto-rotate tiap
+  // 5 detik, berhenti saat hover/fokus, tanpa autoplay bila user meminta
+  // pengurangan gerakan.
+  (function () {
+    const track = document.getElementById("testi-track") as HTMLElement | null;
+    const dotsWrap = document.getElementById("testi-dots");
+    const prev = document.getElementById("testi-prev");
+    const next = document.getElementById("testi-next");
+    const slider = document.getElementById("testi-slider");
+    if (!track || !dotsWrap || !prev || !next) return;
+
+    const cards = Array.from(track.children) as HTMLElement[];
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let page = 0;
+    let pages = 1;
+    let timer: number | undefined;
+
+    const visibleCount = () =>
+      Math.max(1, Math.round(track.clientWidth / stepWidth()));
+
+    function stepWidth(): number {
+      return cards.length > 1
+        ? cards[1].offsetLeft - cards[0].offsetLeft
+        : cards[0].offsetWidth;
+    }
+
+    function maxScroll(): number {
+      return track.scrollWidth - track.clientWidth;
+    }
+
+    function buildDots() {
+      dotsWrap.innerHTML = "";
+      pages = Math.max(1, Math.ceil(cards.length / visibleCount()));
+      for (let i = 0; i < pages; i++) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "dot";
+        dot.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(dot);
+      }
+      page = Math.min(page, pages - 1);
+      syncDots();
+    }
+
+    function goTo(p: number) {
+      page = (p + pages) % pages;
+      const step = stepWidth() * visibleCount();
+      const left = Math.min(page * step, maxScroll());
+      track.scrollTo({ left, behavior: "smooth" });
+      syncDots();
+    }
+
+    function syncDots() {
+      dotsWrap.querySelectorAll(".dot").forEach((d, i) => {
+        d.classList.toggle("active", i === page);
+      });
+    }
+
+    function start() {
+      if (reduced || timer !== undefined) return;
+      timer = window.setInterval(() => goTo(page + 1), 5000);
+    }
+
+    function stop() {
+      if (timer !== undefined) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    }
+
+    prev.addEventListener("click", () => { stop(); goTo(page - 1); start(); });
+    next.addEventListener("click", () => { stop(); goTo(page + 1); start(); });
+    track.addEventListener("scroll", () => {
+      const step = stepWidth() * visibleCount();
+      const p = Math.min(pages - 1, Math.round(track.scrollLeft / step));
+      if (p !== page) { page = p; syncDots(); }
+    }, { passive: true });
+    window.addEventListener("resize", buildDots);
+
+    slider?.addEventListener("pointerenter", stop);
+    slider?.addEventListener("pointerleave", start);
+    slider?.addEventListener("focusin", stop);
+    slider?.addEventListener("focusout", start);
+
+    buildDots();
+    start();
+  })();
+</script>
