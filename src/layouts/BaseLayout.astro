@@ -73,6 +73,12 @@ const jsonLd = {
     reviewCount: String(SITE.rating.count),
     bestRating: "5",
   },
+  hasMap: SITE.rating.url,
+  slogan: "Bengkel keluarga untuk mobil keluarga Anda",
+  priceRange: "$$",
+  areaServed: ["Bojongsoang", "Dayeuhkolot", "Baleendah", "Buahbatu", "Bandung Raya"].map(
+    (nama) => ({ "@type": "City", name: nama })
+  ),
   // [DATA-CLIENT:link-*] — isi sameAs setelah link sosmed client masuk
   sameAs: [SITE.social.facebook, SITE.social.instagram].filter(Boolean),
   hasOfferCatalog: {
@@ -108,14 +114,36 @@ const jsonLd = {
     <meta name="theme-color" content="#0e9594" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Instruksi crawling maksimal + preview gambar besar di SERP -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Sinyal lokasi tambahan untuk SEO lokal -->
+    <meta name="geo.region" content="ID-JB" />
+    <meta name="geo.placename" content="Bojongsoang, Kab. Bandung" />
+    <meta name="geo.position" content={`${SITE.geo.lat};${SITE.geo.lng}`} />
+    <meta name="ICBM" content={`${SITE.geo.lat}, ${SITE.geo.lng}`} />
+    <meta
+      name="keywords"
+      content="bengkel mobil bojongsoang, bengkel mobil bandung, cuci mobil hidrolik bandung, cuci mobil hidrolik bojongsoang, steam wash bojongsoang, ganti oli bojongsoang, service ac mobil bandung, bengkel mobil terdekat bojongsoang, bengkel mobil dayeuhkolot, bengkel mobil baleendah, vacuum mobil bojongsoang, detailing mobil bandung"
+    />
+
     <!-- Open Graph / WhatsApp & Facebook share preview -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content="Sinar Surya Auto Care — Bengkel Mobil & Cuci Hidrolik Bojongsoang" />
     <meta property="og:description" content="Servis rutin, perbaikan, hingga cuci mobil hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung." />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sinar Surya Auto Care — bengkel mobil & cuci hidrolik Bojongsoang, rating 4,7 dari 96 ulasan Google" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sinar Surya Auto Care — Bengkel Mobil & Cuci Hidrolik Bojongsoang" />
+    <meta name="twitter:description" content="Servis rutin, perbaikan, hingga cuci mobil hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Buka setiap hari 07.00–17.00." />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Sinar Surya Auto Care — bengkel mobil & cuci hidrolik Bojongsoang" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
