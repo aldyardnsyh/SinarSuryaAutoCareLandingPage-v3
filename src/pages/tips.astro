@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopInfoBar from "../components/TopInfoBar.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import { SITE, waLink } from "../data/site";
+---
+<BaseLayout title="Tips Mobil Harian Bojongsoang | Sinar Surya Auto Care" description="Tips praktis perawatan mobil harian untuk komuter Bojongsoang Dayeuhkolot Baleendah: ceklis mudik, rawat AC, dan cuci kolong. WA 0812-2022-203.">
+<TopInfoBar /><Navbar />
+<main id="konten-utama" class="container page">
+<nav aria-label="Breadcrumb"><a href="/">Beranda</a> / Tips</nav>
+<h1>Tips Mobil Harian untuk Komuter Bojongsoang</h1>
+<p>Kumpulan catatan praktis dari bengkel kami di Jl. Cijagra No.8 untuk mobil keluarga yang dipakai harian ke Dayeuhkolot, Baleendah, dan Buahbatu.</p>
+<article>
+<h2>1. Ceklis sebelum mudik dari Bojongsoang</h2>
+<p>Sebelum berangkat jauh, cek lima hal ini: oli dan air radiator, tekanan ban termasuk ban serep, rem dan lampu, AC yang dingin merata, serta wiper dan air washer. Kalau ada yang ragu, mampir dulu untuk cek cepat, gratis konsultasi via WhatsApp <a href={waLink("Halo, saya mau cek mobil sebelum mudik.")} target="_blank" rel="noopener">0812-2022-203</a>.</p>
+</article>
+<article>
+<h2>2. Merawat AC mobil yang dipakai macet harian</h2>
+<p>Rute Bojongsoang Dayeuhkolot sering macet pagi dan sore, AC kerja keras. Tandanya perlu diservis: hembusan kurang dingin saat berhenti tapi dingin saat jalan, atau ada bau saat pertama dinyalakan. Cuci AC dan ganti filter kabin tiap 6 bulan menjaga kabin tetap sejuk untuk anak.</p>
+</article>
+<p class="alt">Butuh servis? Lihat <a href="/layanan">layanan kami</a> atau chat langsung via WhatsApp.</p>
+</main>
+<Footer /><WhatsAppFloat />
+</BaseLayout>
+<style>
+.page { padding-block: 2rem 3rem; max-width: 760px; }
+.page h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--color-navy); }
+.page h2 { margin-top: 1.6rem; color: var(--color-navy); font-size: 1.2rem; }
+.page p { line-height: 1.75; color: var(--color-navy-soft); }
+.page nav { font-size: .85rem; margin-bottom: 1rem; }
+article { background: var(--color-card); border-radius: 14px; padding: 1.2rem 1.4rem; box-shadow: var(--shadow-rest); margin-top: 1rem; }
+.alt { margin-top: 1.4rem; }
+</style>
