@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { SITE, waLink } from "../../data/site";
+const wa = waLink("Halo, saya dari Baleendah. Saya mau tanya soal servis mobil saya.");
+const crumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Beranda", item: `${SITE.domain}/` }, { "@type": "ListItem", position: 2, name: "Bengkel Mobil Baleendah", item: `${SITE.domain}/area/baleendah` }] };
+const svc = { "@context": "https://schema.org", "@type": "Service", name: "Bengkel Mobil untuk Warga Baleendah", provider: { "@type": "AutoRepair", name: SITE.name, url: SITE.domain }, areaServed: "Baleendah", url: `${SITE.domain}/area/baleendah` };
+---
+<BaseLayout title="Bengkel Mobil Baleendah | Sekitar 15 Menit ke Bojongsoang" description="Dari Baleendah ke Sinar Surya Auto Care sekitar 15 menit. Kaki-kaki, rem, tune up, dan steam wash interior di Jl. Cijagra No.8, Bojongsoang. WA 0812-2022-203.">
+<TopInfoBar /><Navbar />
+<main id="konten-utama" class="container page">
+<nav aria-label="Breadcrumb"><a href="/">Beranda</a> / Bengkel Mobil Baleendah</nav>
+<h1>Pilihan Bengkel Mobil Warga Baleendah</h1>
+<p>Warga Baleendah biasanya datang akhir pekan sambil mencuci mobil keluarga. Jaraknya sekitar 5 sampai 6 km atau sekitar 15 menit lewat jalur Baleendah Bojongsoang. Tempat tunggunya nyaman untuk anak, jadi keluarga bisa ikut tanpa bosan.</p>
+<h2>Rute umum dari Baleendah</h2>
+<p>Dari pusat Baleendah ambil arah Bojongsoang, lanjut ke Cijagra. Bengkel ada di Jl. Cijagra No.8 dengan parkir yang lega untuk mobil keluarga. Simpan nomor WhatsApp 0812-2022-203 supaya bisa tanya antrean sebelum berangkat.</p>
+<h2>Layanan yang sering dipesan warga Baleendah</h2>
+<ul><li>Cek kaki-kaki dan rem untuk jalan bergelombang</li><li>Tune up dan ganti oli mobil keluarga</li><li>Steam wash interior yang dipakai anak setiap hari</li></ul>
+<p><a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp dari Baleendah</a></p>
+<p class="alt">Lihat juga: <a href="/area/dayeuhkolot">bengkel mobil Dayeuhkolot</a> dan <a href="/layanan">semua layanan</a>.</p>
+</main>
+<Footer /><WhatsAppFloat />
+<script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+<script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>
+<style>
+.page { padding-block: 2rem 3rem; max-width: 760px; }
+.page h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--color-navy); }
+.page h2 { margin-top: 1.6rem; color: var(--color-navy); }
+.page p, .page li { line-height: 1.75; color: var(--color-navy-soft); }
+.page nav { font-size: .85rem; margin-bottom: 1rem; }
+.alt { margin-top: 1rem; }
+</style>

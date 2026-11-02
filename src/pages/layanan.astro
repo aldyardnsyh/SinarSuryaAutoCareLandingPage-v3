@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopInfoBar from "../components/TopInfoBar.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import { LAYANAN } from "../data/layanan";
+import { SITE, waLink } from "../data/site";
+const favorit = LAYANAN.filter((l) => ["ganti-oli","cuci-mobil","service-ac","kaki-kaki"].includes(l.id));
+const sisanya = LAYANAN.filter((l) => !["ganti-oli","cuci-mobil","service-ac","kaki-kaki"].includes(l.id));
+---
+<BaseLayout title="Layanan Bengkel Mobil Bojongsoang | Paling Sering Dipesan Warga" description="Layanan yang paling sering dipesan pelanggan Bojongsoang, Dayeuhkolot, dan Baleendah: ganti oli, cuci hidrolik, service AC, kaki-kaki. Jl. Cijagra No.8. WA 0812-2022-203.">
+<TopInfoBar /><Navbar />
+<main id="konten-utama" class="container page">
+<nav aria-label="Breadcrumb"><a href="/">Beranda</a> / Layanan</nav>
+<h1>Layanan yang Paling Sering Dipesan Warga Bojongsoang</h1>
+<p>Urutan di bawah disusun dari kebiasaan pelanggan sekitar: mobil komuter yang butuh ganti oli cepat, keluarga yang mencuci mobil tiap akhir pekan, dan AC yang harus dingin untuk jalanan Bandung selatan.</p>
+<h2>Paling laris di sini</h2>
+<ul class="grid">
+{favorit.map((l) => <li><strong>{l.nama}</strong><span>{l.deskripsi}</span><a href={waLink(`${SITE.waPrice} ${l.nama}.`)} target="_blank" rel="noopener">Tanya harga via WhatsApp</a></li>)}
+</ul>
+<h2>Layanan pendukung</h2>
+<ul class="grid">
+{sisanya.map((l) => <li><strong>{l.nama}</strong><span>{l.deskripsi}</span><a href={waLink(`${SITE.waPrice} ${l.nama}.`)} target="_blank" rel="noopener">Tanya harga via WhatsApp</a></li>)}
+</ul>
+<p class="alt">Dari luar Bojongsoang? Baca panduan <a href="/area/dayeuhkolot">bengkel mobil Dayeuhkolot</a> dan <a href="/area/baleendah">bengkel mobil Baleendah</a>.</p>
+</main>
+<Footer /><WhatsAppFloat />
+</BaseLayout>
+<style>
+.page { padding-block: 2rem 3rem; max-width: 860px; }
+.page h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--color-navy); }
+.page h2 { margin-top: 1.8rem; color: var(--color-navy); }
+.page p { line-height: 1.75; color: var(--color-navy-soft); }
+.grid { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .8rem; }
+.grid li { background: var(--color-card); border-radius: 14px; padding: 1rem 1.2rem; box-shadow: var(--shadow-rest); display: grid; gap: .3rem; }
+.grid span { color: var(--color-navy-soft); font-size: .92rem; }
+.grid a { color: var(--color-primary); font-weight: 700; font-size: .88rem; text-decoration: none; }
+.page nav { font-size: .85rem; margin-bottom: 1rem; }
+.alt { margin-top: 1.4rem; }
+</style>
