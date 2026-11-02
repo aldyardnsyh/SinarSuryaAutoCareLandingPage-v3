@@ -18,7 +18,7 @@ interface Props {
 
 const title =
   Astro.props.title ??
-  "Bengkel Mobil & Cuci Hidrolik Bojongsoang, Bandung — Sinar Surya Auto Care";
+  "Bengkel Mobil Bojongsoang & Sekitarnya | Servis & Cuci Hidrolik";
 const description =
   Astro.props.description ??
   "Sinar Surya Auto Care, bengkel mobil & cuci hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Servis rutin, ganti oli, AC, kaki-kaki, sampai steam wash. Buka setiap hari 07.00-17.00. Chat WhatsApp untuk info harga.";
@@ -80,7 +80,7 @@ const jsonLd = {
     (nama) => ({ "@type": "City", name: nama })
   ),
   // [DATA-CLIENT:link-*] — isi sameAs setelah link sosmed client masuk
-  sameAs: [SITE.social.facebook, SITE.social.instagram].filter(Boolean),
+  sameAs: [SITE.social.facebook, SITE.social.instagram, "https://www.sinarsuryaautocare.biz.id", "https://www.bengkelmobilbandung.biz.id"].filter(Boolean),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Layanan Sinar Surya Auto Care",

@@ -12,7 +12,7 @@ export const SITE = {
   shortName: "SSAC",
   tagline: "Bengkel Mobil & Cuci Hidrolik · Bojongsoang",
   // Domain resmi dari pemilik — samakan dengan `site` di astro.config.mjs
-  domain: "https://bengkelmobilbojongsoang.web.id",
+  domain: "https://www.bengkelmobilbojongsoang.web.id",
   // Nomor telepon aktif dari client (sekaligus WhatsApp) — 0812-2022-203.
   // Catatan: listing Google Maps masih menampilkan nomor lama; minta
   // pemilik memperbarui nomor di Profil Bisnis Google agar NAP konsisten.

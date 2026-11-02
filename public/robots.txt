@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bengkelmobilbojongsoang.web.id/sitemap-index.xml
+Sitemap: https://www.bengkelmobilbojongsoang.web.id/sitemap-index.xml
