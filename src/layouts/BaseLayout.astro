@@ -23,7 +23,8 @@ const description =
   Astro.props.description ??
   "Sinar Surya Auto Care, bengkel mobil & cuci hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Servis rutin, ganti oli, AC, kaki-kaki, sampai steam wash. Buka setiap hari 07.00-17.00. Chat WhatsApp untuk info harga.";
 
-const canonical = new URL(Astro.url.pathname, SITE.domain);
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, SITE.domain);
 const ogImage = new URL("/og-image.jpg", SITE.domain).href;
 
 // JSON-LD AutoRepair — data dari Google Maps resmi bengkel
