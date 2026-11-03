@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/cuci-mobil-detail-bojongsoang.jpg";
+
+const path = "/layanan/steam-wash-interior";
+const title = "Steam Wash Interior Mobil Bojongsoang | Sinar Surya Auto Care";
+const description =
+  "Steam wash interior mobil di Bojongsoang, Kab. Bandung. Kabin dibersihkan dengan uap, higienis, tidak lembap, aman untuk anak. Gabung dengan cuci hidrolik di satu tempat. WA 0812-2022-203.";
+const wa = waLink("Saya mau tanya paket steam wash interior.");
+const crumbs = breadcrumb([{ name: "Steam Wash Interior", path }]);
+const svc = servicePage({
+  path,
+  name: "Steam Wash Interior",
+  serviceType: "Pembersihan interior mobil dengan steam: jok, karpet, plafon, dan bagian kabin",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Steam Wash Interior
+    </nav>
+    <h1>Steam Wash Interior Mobil di Bojongsoang</h1>
+    <p class="lead">
+      Interior mobil yang dipakai harian pasti kotor: remah makanan di jok,
+      debu di plafon, noda di karpet, plus bau yang mulai mengganjal. Steam wash
+      membersihkan semuanya dengan uap panas, jadi kotoran terangkat tanpa
+      merendam kabin, kering lebih cepat, dan tidak menyisakan kelembapan yang
+      memicu bau apek.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Mobil pelanggan dengan pintu dan kap terbuka saat proses cuci detail di area wash Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Proses cuci detail: semua pintu dibuka, kabin dikerjakan satu per satu.</figcaption>
+    </figure>
+
+    <h2>Bagian kabin yang dikerjakan</h2>
+    <ul>
+      <li><strong>Jok dan sandaran:</strong> noda makanan, bekas minuman, dan kotoran harian diangkat dengan steam.</li>
+      <li><strong>Karpet dan lantai:</strong> debu dan pasir di dasar kabin disedot lalu di-steam.</li>
+      <li><strong>Plafon kabin:</strong> area yang sering terlewat, dibersihkan lembut supaya tidak melengkung.</li>
+      <li><strong>Dashboard dan panel pintu:</strong> dilap detail, sela-sela tombol ikut dibersihkan.</li>
+      <li><strong>Bagasi:</strong> ikut dibersihkan kalau ada noda atau bau.</li>
+    </ul>
+
+    <h2>Kenapa steam, bukan cuci interior biasa</h2>
+    <p>
+      Cuci interior yang pakai banyak air sering meninggalkan kelembapan di
+      bahan jok dan karpet. Kalau tidak kering sempurna, muncul bau apek dan
+      jamur. Steam bekerja beda: uap panas meluruhkan kotoran sekaligus
+      membantu meredakan bau, dengan sedikit air. Kabin lebih cepat kering dan
+      lebih nyaman dipakai, terutama untuk mobil yang penumpangnya anak-anak.
+    </p>
+
+    <h2>Kapan sebaiknya steam wash interior</h2>
+    <ul>
+      <li>Kabin mulai bau, misalnya karena makanan, pakaian basah, atau banjir ringan.</li>
+      <li>Ada noda membandel di jok, karpet, atau plafon.</li>
+      <li>Mobil baru dibeli bekas dan kabinnya ingin benar-benar segar.</li>
+      <li>Rutin tiap beberapa bulan untuk mobil yang tiap hari mengantar anak sekolah.</li>
+    </ul>
+
+    <h2>Alur pengerjaan</h2>
+    <ol>
+      <li>Kabin dicek bersama pemilik: bagian mana yang paling mengganggu.</li>
+      <li>Vacuum menyeluruh untuk angkat debu dan pasir.</li>
+      <li>Steam di jok, karpet, plafon, dan panel, area bandel dikerjakan ekstra.</li>
+      <li>Pengeringan dan pemeriksaan akhir, mobil siap diambil.</li>
+    </ol>
+    <p class="note-box">
+      <strong>Info jam:</strong> steam wash buka setiap hari 07.00-17.00.
+      Prosesnya butuh waktu lebih lama daripada cuci biasa, jadi mampir pagi
+      supaya mobil selesai di hari yang sama dengan santai.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Berapa lama kabin jadi kering?</h3>
+        <p>
+          Jauh lebih cepat daripada cuci interior berbasis air karena yang
+          dipakai uap, bukan rendaman. Saat mobil diambil, kabinnya sudah
+          nyaman dipakai jalan.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Aman untuk jok bahan dan kulit?</h3>
+        <p>
+          Aman. Tekanan dan suhu steam-nya diatur sesuai bahan, dan area
+          sensitif dikerjakan lembut. Ceritakan saja bahan jok mobil Anda
+          saat serah terima.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Bisa digabung dengan cuci hidrolik?</h3>
+        <p>
+          Sangat disarankan. Banyak pelanggan mengambil paket
+          <a href="/layanan/cuci-mobil-hidrolik">cuci mobil hidrolik</a> untuk
+          bodi dan kolong, plus steam wash untuk kabin, sekali datang selesai.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Tanya paket steam wash untuk mobil Anda</h2>
+      <p>Ceritakan kondisi kabinnya, kami bantu rekomendasikan yang pas.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/layanan/cuci-mobil-hidrolik">cuci mobil hidrolik</a>,
+      <a href="/layanan">semua layanan</a>, dan
+      <a href="/tips/beda-cuci-hidrolik-dan-cuci-biasa">bedanya cuci hidrolik dan cuci biasa</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

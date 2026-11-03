@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/perbaikan-mesin-toyota-bojongsoang.jpg";
+
+const path = "/layanan/service-ac-mobil";
+const title = "Service AC Mobil Bojongsoang & Bandung | Sinar Surya Auto Care";
+const description =
+  "Service AC mobil di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Cuci AC, isi freon, ganti filter kabin, sampai perbaikan kebocoran. Servis Senin-Sabtu 07.00-17.00. WA 0812-2022-203.";
+const wa = waLink("Saya mau service AC mobil saya.");
+const crumbs = breadcrumb([{ name: "Service AC Mobil", path }]);
+const svc = servicePage({
+  path,
+  name: "Service AC Mobil",
+  serviceType: "Perawatan dan perbaikan AC mobil: cuci AC, isi freon, filter kabin, perbaikan kebocoran",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Service AC Mobil
+    </nav>
+    <h1>Service AC Mobil di Bojongsoang</h1>
+    <p class="lead">
+      AC mobil yang mulai kurang dingin itu mengganggu, apalagi di macetan
+      Bojongsoang ke arah Bandung saat matahari terik. Di Sinar Surya Auto
+      Care, AC diperiksa dulu penyebabnya: kurang freon, filter kabin mampet,
+      kondensor kotor, atau ada kebocoran. Baru setelah jelas, kami
+      rekomendasikan pengerjaannya.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Pemeriksaan ruang mesin mobil pelanggan saat service di bengkel Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Pemeriksaan area mesin, tempat komponen AC mobil bekerja.</figcaption>
+    </figure>
+
+    <h2>Apa saja yang dikerjakan</h2>
+    <ul>
+      <li><strong>Cek freon dan tekanan sistem:</strong> ukur dulu, jangan asal isi. Freon berlebih juga bikin AC tidak dingin maksimal.</li>
+      <li><strong>Cuci AC dan komponen:</strong> kondensor dan evaporator yang kotor dibersihkan agar hembusan dingin merata.</li>
+      <li><strong>Ganti filter kabin:</strong> penting untuk kabin yang bebas bau, terutama mobil yang mengantar anak.</li>
+      <li><strong>Perbaikan kebocoran:</strong> kalau freon cepat habis, dicari titik bocornya, bukan sekadar diisi ulang terus.</li>
+      <li><strong>Komponen kelistrikan AC:</strong> magnet clutch, sensor, dan relay diperiksa bila AC mati sendiri atau tidak mau nyala.</li>
+    </ul>
+
+    <h2>Tanda AC mobil perlu diservis</h2>
+    <ul>
+      <li>Hembusan dingin saat jalan, tapi melemah saat berhenti di lampu merah.</li>
+      <li>Butuh lama baru dingin, atau dinginnya tidak merata ke sisi penumpang.</li>
+      <li>Muncul bau apek atau anyir saat AC dinyalakan.</li>
+      <li>Kaca bagian dalam susah hilang embunnya saat hujan.</li>
+      <li>Ada suara aneh dari ruang mesin saat AC aktif.</li>
+      <li>Filter kabin terakhir diganti lebih dari setahun lalu atau tidak pernah.</li>
+    </ul>
+    <p>
+      Salah satu tanda paling sering terlewat: AC masih dingin, tapi tiap
+      tahun terasa sedikit kurang dari tahun sebelumnya. Itu biasanya
+      kebocoran kecil. Semakin cepat diperiksa, semakin murah perbaikannya.
+    </p>
+
+    <h2>Alur pengerjaan</h2>
+    <ol>
+      <li>Ceritakan keluhannya: sejak kapan, dingin atau tidak, ada bau atau suara.</li>
+      <li>Teknisi mengukur tekanan sistem dan memeriksa komponen utamanya.</li>
+      <li>Hasil pemeriksaan dijelaskan dengan pilihan pengerjaannya, tidak ada paksaan ganti yang tidak perlu.</li>
+      <li>Setelah dikerjakan, hembusan dan suhu dicek ulang bersama Anda.</li>
+    </ol>
+    <p class="note-box">
+      <strong>Info jam:</strong> service AC dikerjakan Senin sampai Sabtu,
+      07.00-17.00. Untuk kabin yang mulai bau, kombinasi favorit pelanggan:
+      cuci AC digabung <a href="/layanan/steam-wash-interior">steam wash interior</a>.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>AC kurang dingin berarti harus isi freon?</h3>
+        <p>
+          Belum tentu. Filter kabin mampet atau kondensor kotor punya gejala
+          serupa. Karena itu diperiksa dulu, supaya biayanya dipakai di
+          pengerjaan yang memang dibutuhkan.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Berapa lama pengerjaannya?</h3>
+        <p>
+          Cuci AC dan ganti filter kabin biasanya selesai saat menunggu.
+          Kalau ada kebocoran yang harus dicari, waktunya lebih lama dan
+          estimasinya kami sampaikan di awal.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Sekali berapa lama AC dirawat ulang?</h3>
+        <p>
+          Untuk mobil harian, cuci AC dan ganti filter kabin tiap 6 bulan
+          sudah menjaga kabin tetap sejuk. Kalau bau atau kurang dingin muncul
+          lebih cepat, mampir saja untuk dicek, tidak perlu menunggu jadwal.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>AC mulai kurang dingin? Cek dulu, gratis.</h2>
+      <p>Ceritakan keluhannya via WhatsApp, kami bantu perkirakan penyebabnya.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/tips/tanda-ac-mobil-kurang-dingin">tanda AC mobil kurang dingin</a>,
+      <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>, dan
+      <a href="/layanan">semua layanan</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

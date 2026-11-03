@@ -6,12 +6,27 @@ import Icon from "./Icon.astro";
 
 const YEAR = new Date().getFullYear();
 
+// Anchor memakai URL absolut supaya tetap benar saat dibuka dari
+// halaman dalam (/layanan/*, /area/*, /tips/*), bukan hanya dari homepage.
 const NAV = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang", href: "#tentang" },
-  { label: "Layanan", href: "#layanan" },
-  { label: "Galeri", href: "#galeri" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Beranda", href: "/#beranda" },
+  { label: "Tentang", href: "/#tentang" },
+  { label: "Layanan", href: "/#layanan" },
+  { label: "Galeri", href: "/#galeri" },
+  { label: "Kontak", href: "/#kontak" },
+];
+
+// Internal linking ke halaman dedikasi (SEO: setiap halaman dalam
+// mendapat link dari footer di seluruh situs)
+const LAYANAN_LINKS = [
+  { label: "Cuci Mobil Hidrolik", href: "/layanan/cuci-mobil-hidrolik" },
+  { label: "Steam Wash Interior", href: "/layanan/steam-wash-interior" },
+  { label: "Servis Rutin & Tune Up", href: "/layanan/servis-rutin-tune-up" },
+  { label: "Ganti Oli & Filter", href: "/layanan/ganti-oli" },
+  { label: "Service AC Mobil", href: "/layanan/service-ac-mobil" },
+  { label: "Kaki-kaki & Rem", href: "/layanan/kaki-kaki-rem" },
+  { label: "Tips Mobil Harian", href: "/tips" },
+  { label: "Area Layanan", href: "/area/buahbatu" },
 ];
 
 const sosmed = [
@@ -23,7 +38,7 @@ const sosmed = [
 <footer class="footer">
   <div class="container grid">
     <div class="brand-col">
-      <a href="#beranda" class="brand" aria-label={`${SITE.name}, kembali ke atas`}>
+      <a href="/#beranda" class="brand" aria-label={`${SITE.name}, kembali ke beranda`}>
         <Logo size={44} />
         <span class="brand-text">
           <span class="brand-name">Sinar Surya</span>
@@ -41,6 +56,10 @@ const sosmed = [
       <h3>Navigasi</h3>
       <ul>
         {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      </ul>
+      <h3 class="mt">Layanan &amp; Info</h3>
+      <ul>
+        {LAYANAN_LINKS.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
       </ul>
     </nav>
 
@@ -145,6 +164,10 @@ const sosmed = [
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 0.9rem;
+  }
+
+  h3.mt {
+    margin-top: 1.5rem;
   }
 
   ul {

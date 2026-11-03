@@ -7,6 +7,9 @@ export interface Layanan {
   deskripsi: string;
   ikon: string; // nama ikon pada Icon.astro
   group: "servis" | "cuci";
+  // URL halaman dedikasi (relatif, tanpa trailing slash) — null jika belum ada.
+  // Kartu di homepage + footer memakai ini untuk internal linking.
+  href: string | null;
 }
 
 export const LAYANAN: Layanan[] = [
@@ -17,6 +20,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Perawatan berkala agar mesin tetap sehat dan hemat bahan bakar.",
     ikon: "wrench",
     group: "servis",
+    href: "/layanan/servis-rutin-tune-up",
   },
   {
     id: "ganti-oli",
@@ -24,6 +28,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Oli dan filter disesuaikan dengan tipe mobil Anda.",
     ikon: "oil",
     group: "servis",
+    href: "/layanan/ganti-oli",
   },
   {
     id: "service-ac",
@@ -31,6 +36,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Dari cuci AC sampai perbaikan, agar kabin kembali sejuk.",
     ikon: "snow",
     group: "servis",
+    href: "/layanan/service-ac-mobil",
   },
   {
     id: "kaki-kaki",
@@ -38,6 +44,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Suspensi, shockbreaker, dan rem diperiksa dengan teliti.",
     ikon: "disc",
     group: "servis",
+    href: "/layanan/kaki-kaki-rem",
   },
   {
     id: "kelistrikan",
@@ -45,6 +52,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Cek kelistrikan, aki, sampai lampu, agar mobil siap dipakai pagi hari.",
     ikon: "bolt",
     group: "servis",
+    href: null,
   },
   // Grup B — Cuci Hidrolik & Steam
   {
@@ -53,6 +61,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Mobil diangkat hidrolik, bagian bawahnya ikut tercuci bersih.",
     ikon: "car",
     group: "cuci",
+    href: "/layanan/cuci-mobil-hidrolik",
   },
   {
     id: "steam-interior",
@@ -60,6 +69,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Interior dibersihkan dengan steam, higienis dan tidak lembap.",
     ikon: "steam",
     group: "cuci",
+    href: "/layanan/steam-wash-interior",
   },
   {
     id: "vacuum-detailing",
@@ -67,6 +77,7 @@ export const LAYANAN: Layanan[] = [
     deskripsi: "Vakum menyeluruh dan detailing agar tampilan mobil kembali rapi.",
     ikon: "sparkle",
     group: "cuci",
+    href: null,
   },
 ];
 

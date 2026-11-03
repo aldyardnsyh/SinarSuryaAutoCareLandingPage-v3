@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { SITE, waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/tampak-depan-bengkel-bojongsoang-2026.jpg";
+
+const path = "/area/buahbatu";
+const title = "Bengkel Mobil Buahbatu Terdekat | Sinar Surya Auto Care Bojongsoang";
+const description =
+  "Bengkel mobil dekat Buahbatu, Bandung: Sinar Surya Auto Care di Jl. Cijagra No.8, Bojongsoang, lewat jalur Cijagra langsung tersambung. Cuci hidrolik, servis, dan AC mobil. WA 0812-2022-203.";
+const wa = waLink("Halo, saya dari area Buahbatu. Saya mau tanya soal servis mobil saya.");
+const crumbs = breadcrumb([{ name: "Bengkel Mobil Buahbatu", path }]);
+const svc = servicePage({
+  path,
+  name: "Bengkel Mobil untuk Warga Buahbatu",
+  serviceType: "Servis, perbaikan, dan cuci mobil untuk area Buahbatu dan Bandung selatan",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / Bengkel Mobil Buahbatu
+    </nav>
+    <h1>Pilihan Bengkel Mobil untuk Warga Buahbatu</h1>
+    <p class="lead">
+      Buahbatu dan Bojongsoang itu tersambung langsung lewat Jl. Cijagra, jadi
+      bengkel kami di Jl. Cijagra No.8 sebenarnya hanya beberapa menit dari
+      sisi Buahbatu. Banyak pelanggan dari arah Buahbatu datang sambil
+      mengantar kegiatan di selatan Bandung, mampir untuk servis atau cuci,
+      lalu lanjut beraktivitas.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Tampak depan bengkel Sinar Surya Auto Care di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Tampak depan bengkel di Jl. Cijagra No.8, mudah ditemukan dari arah Buahbatu.</figcaption>
+    </figure>
+
+    <h2>Rute umum dari Buahbatu</h2>
+    <p>
+      Ambil arah Bojongsoang lewat Jl. Cijagra, jalan ini langsung tersambung
+      sampai depan bengkel. Tidak perlu memutar masuk gang. Parkirnya lega
+      untuk mobil keluarga, dan sebelum berangkat Anda bisa tanya dulu antrean
+      servis atau cuci via WhatsApp 0812-2022-203 supaya tidak menunggu lama.
+    </p>
+
+    <h2>Layanan yang sering dipesan warga Buahbatu</h2>
+    <ul>
+      <li><a href="/layanan/cuci-mobil-hidrolik">Cuci mobil hidrolik</a>, mobil diangkat lift dan kolongnya ikut tercuci.</li>
+      <li><a href="/layanan/servis-rutin-tune-up">Servis rutin dan tune up</a> untuk mobil harian komuter selatan Bandung.</li>
+      <li><a href="/layanan/service-ac-mobil">Service AC mobil</a>, penting untuk rute macet Soekarno Hatta dan sekitarnya.</li>
+      <li><a href="/layanan/kaki-kaki-rem">Kaki-kaki dan rem</a>, wajib dicek rutin karena jalanan Buahbatu Bojongsoang penuh speed bump.</li>
+    </ul>
+
+    <p>
+      Bengkel buka setiap hari untuk cuci dan steam, pukul 07.00 sampai 17.00,
+      sementara servis dan perbaikan menerima mobil Senin sampai Sabtu.
+      Rating kami di Google saat ini 4,7 dari 96 ulasan, ditulis langsung
+      oleh pelanggan yang datang ke bengkel.
+    </p>
+    <p><a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp dari Buahbatu</a></p>
+    <p class="alt">
+      Lihat juga: <a href="/area/dayeuhkolot">bengkel mobil Dayeuhkolot</a>,
+      <a href="/area/baleendah">bengkel mobil Baleendah</a>, dan
+      <a href="/layanan">semua layanan</a>. Profil bisnis lengkap kami ada di
+      <a href="https://www.sinarsuryaautocare.biz.id" target="_blank" rel="noopener">sinarsuryaautocare.biz.id</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

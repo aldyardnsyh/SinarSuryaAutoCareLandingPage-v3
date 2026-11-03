@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/servis-mobil-pelanggan-bojongsoang.jpg";
+
+const path = "/layanan/servis-rutin-tune-up";
+const title = "Servis Rutin & Tune Up Mobil Bojongsoang | Sinar Surya Auto Care";
+const description =
+  "Servis rutin dan tune up mobil di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Pemeriksaan berkala, tune up, cairan, hingga filter. Servis Senin-Sabtu 07.00-17.00. Konsultasi gratis via WA 0812-2022-203.";
+const wa = waLink("Saya mau tanya harga servis rutin atau tune up.");
+const crumbs = breadcrumb([{ name: "Servis Rutin & Tune Up", path }]);
+const svc = servicePage({
+  path,
+  name: "Servis Rutin & Tune Up Mobil",
+  serviceType: "Perawatan berkala mobil: tune up, pemeriksaan cairan, filter, dan komponen rutin",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Servis Rutin &amp; Tune Up
+    </nav>
+    <h1>Servis Rutin &amp; Tune Up Mobil di Bojongsoang</h1>
+    <p class="lead">
+      Mobil keluarga yang dipakai harian butuh perawatan berkala supaya tetap
+      sehat, hemat bahan bakar, dan tidak tiba-tiba rewel di jalan. Di Sinar
+      Surya Auto Care, servis rutin dan tune up dikerjakan dengan pemeriksaan
+      yang jelas: apa yang perlu diganti, apa yang masih bisa ditunda, semuanya
+      dikomunikasikan dulu sebelum dikerjakan.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Mobil keluarga pelanggan diperiksa di area servis Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Pemeriksaan menyeluruh sebelum ada pengerjaan, supaya jelas apa yang perlu diservis.</figcaption>
+    </figure>
+
+    <h2>Apa saja yang dikerjakan saat servis rutin</h2>
+    <ul>
+      <li><strong>Tune up mesin:</strong> pemeriksaan busi, throttle, dan setelan mesin agar idle halus dan tarikan responsif.</li>
+      <li><strong>Cek dan ganti cairan:</strong> oli mesin, oli rem, coolant, dan power steering dicek level dan kondisinya.</li>
+      <li><strong>Filter:</strong> filter oli, filter udara, dan filter kabin diperiksa, diganti bila sudah waktunya.</li>
+      <li><strong>Baterai dan kelistrikan:</strong> tegangan aki dan kondisi lampu dicek supaya pagi hari tidak susah starter.</li>
+      <li><strong>Ban dan tekanan angin:</strong> termasuk ban serep, plus catatan jika pola keausannya tidak normal.</li>
+      <li><strong>Rute harian ikut dipertimbangkan:</strong> mobil yang macet tiap hari Bojongsoang Dayeuhkolot punya kebutuhan servis yang beda dari mobil jarang dipakai.</li>
+    </ul>
+
+    <h2>Tanda mobil Anda perlu servis sekarang</h2>
+    <ul>
+      <li>Konsumsi bahan bakar terasa naik tanpa perubahan rute.</li>
+      <li>Mesin terasa kasar saat idle atau tarikannya berat.</li>
+      <li>Sudah lewat jadwal ganti oli, entah dari jarak km atau dari kalender.</li>
+      <li>Ada lampu indikator menyala di panel, sekecil apa pun.</li>
+      <li>Bunyi aneh mulai muncul, misalnya dari bagian bawah atau roda.</li>
+    </ul>
+    <p>
+      Kalau ragu keluhannya masuk kategori apa, cukup chat dulu via WhatsApp.
+      Konsultasinya gratis, dan kalau perlu kami minta mampir untuk pemeriksaan
+      singkat dulu, tidak langsung ditawari ganti-ganti.
+    </p>
+
+    <h2>Alur pengerjaan</h2>
+    <ol>
+      <li>Serahkan mobil dan ceritakan keluhannya, termasuk hal kecil yang mungkin terasa sepele.</li>
+      <li>Teknisi memeriksa dan membuat daftar: yang wajib dikerjakan dan yang boleh menunggu.</li>
+      <li>Anda setuju lewat WhatsApp atau langsung di tempat, baru pengerjaan dimulai.</li>
+      <li>Sesudah selesai, hasil dikerjaan dijelaskan dan mobil dicek bareng sebelum pulang.</li>
+    </ol>
+    <p class="note-box">
+      <strong>Info jam:</strong> servis dan perbaikan menerima mobil Senin
+      sampai Sabtu, pukul 07.00-17.00. Hari Minggu khusus cuci dan steam.
+      Slot pagi biasanya paling lega, chat dulu kalau mau booking.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Sekali servis butuh berapa lama?</h3>
+        <p>
+          Tergantung pekerjaannya. Pemeriksaan rutin dan ganti oli bisa
+          diselesaikan saat menunggu, sementara tune up lengkap mungkin lebih
+          lama. Estimasi selalu dikasih dulu sebelum pengerjaan, jadi Anda
+          bisa atur jadwal jemput.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Mobil masih garansi dealer boleh servis di sini?</h3>
+        <p>
+          Untuk mobil yang sudah lewat masa garansi resmi atau yang pemiliknya
+          memang memilih bengkel umum, silakan. Ceritakan riwayat servisnya,
+          kami bantu jaga ritme perawatannya tetap teratur.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Bisa sekalian dicuci sambil diservis?</h3>
+        <p>
+          Bisa, dan ini favorit banyak pelanggan. Selagi mobil diservis,
+          bagian bodi dan kabin bisa sekalian dilepas kotor lewat
+          <a href="/layanan/cuci-mobil-hidrolik">cuci mobil hidrolik</a> atau
+          <a href="/layanan/steam-wash-interior">steam wash interior</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Konsultasi dulu, baru servis</h2>
+      <p>Ceritakan keluhan mobil Anda, gratis dan langsung dibalas bengkelnya.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/layanan/ganti-oli">ganti oli &amp; filter</a>,
+      <a href="/layanan/service-ac-mobil">service AC mobil</a>, dan
+      <a href="/tips/jadwal-perawatan-mobil">jadwal perawatan mobil berkala</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

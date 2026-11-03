@@ -1,35 +1,84 @@
 ---
+// Tips — indeks artikel. Artikel penuh ada di src/pages/tips/*.astro.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopInfoBar from "../components/TopInfoBar.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import { SITE, waLink } from "../data/site";
+import { breadcrumb } from "../lib/seo";
+
+const crumbs = breadcrumb([{ name: "Tips Mobil", path: "/tips" }]);
+
+const ARTIKEL = [
+  {
+    href: "/tips/jadwal-perawatan-mobil",
+    judul: "Jadwal Perawatan Mobil Berkala yang Realistis",
+    ringkas:
+      "Patokan km dan kalender untuk oli, filter, ban, AC, sampai kaki-kaki. Termasuk catatan khusus untuk mobil yang harian macet di rute Bojongsoang.",
+    tanda: "Perawatan mobil",
+  },
+  {
+    href: "/tips/tanda-ac-mobil-kurang-dingin",
+    judul: "Tanda AC Mobil Kurang Dingin dan Penyebab Umumnya",
+    ringkas:
+      "Hembusan melemah saat berhenti, bau apek, kaca berembun: kenali tandanya dan bagian mana yang biasanya jadi penyebab, sebelum biayanya membesar.",
+    tanda: "AC mobil",
+  },
+  {
+    href: "/tips/beda-cuci-hidrolik-dan-cuci-biasa",
+    judul: "Bedanya Cuci Mobil Hidrolik dan Cuci Biasa",
+    ringkas:
+      "Kenapa bagian bawah mobil justru bagian yang paling sering terlupakan, dan apa yang beda saat mobil dicuci di atas lift hidrolik.",
+    tanda: "Cuci mobil",
+  },
+];
 ---
-<BaseLayout title="Tips Mobil Harian Bojongsoang | Sinar Surya Auto Care" description="Tips praktis perawatan mobil harian untuk komuter Bojongsoang Dayeuhkolot Baleendah: ceklis mudik, rawat AC, dan cuci kolong. WA 0812-2022-203.">
+
+<BaseLayout title="Tips Mobil Harian Bojongsoang | Sinar Surya Auto Care" description="Kumpulan tips perawatan mobil harian dari bengkel kami di Jl. Cijagra No.8, Bojongsoang: jadwal servis berkala, AC mobil, sampai cuci hidrolik. Konsultasi gratis via WA 0812-2022-203.">
 <TopInfoBar /><Navbar />
 <main id="konten-utama" class="container page">
-<nav aria-label="Breadcrumb"><a href="/">Beranda</a> / Tips</nav>
+<nav aria-label="Breadcrumb"><a href="/">Beranda</a> / Tips Mobil</nav>
 <h1>Tips Mobil Harian untuk Komuter Bojongsoang</h1>
-<p>Kumpulan catatan praktis dari bengkel kami di Jl. Cijagra No.8 untuk mobil keluarga yang dipakai harian ke Dayeuhkolot, Baleendah, dan Buahbatu.</p>
+<p>Kumpulan catatan praktis dari bengkel kami di Jl. Cijagra No.8 untuk mobil keluarga yang dipakai harian ke Dayeuhkolot, Baleendah, dan Buahbatu. Semua tips ditulis dari pengalaman menangani mobil pelanggan, bukan teori.</p>
+
+{ARTIKEL.map((a) => (
+<article class="kartu-artikel">
+  <p class="chip">{a.tanda}</p>
+  <h2><a href={a.href}>{a.judul}</a></h2>
+  <p>{a.ringkas}</p>
+  <p class="baca"><a href={a.href}>Baca selengkapnya &rarr;</a></p>
+</article>
+))}
+
+<h2>Catatan cepat</h2>
 <article>
-<h2>1. Ceklis sebelum mudik dari Bojongsoang</h2>
+<h3>Ceklis sebelum mudik dari Bojongsoang</h3>
 <p>Sebelum berangkat jauh, cek lima hal ini: oli dan air radiator, tekanan ban termasuk ban serep, rem dan lampu, AC yang dingin merata, serta wiper dan air washer. Kalau ada yang ragu, mampir dulu untuk cek cepat, gratis konsultasi via WhatsApp <a href={waLink("Halo, saya mau cek mobil sebelum mudik.")} target="_blank" rel="noopener">0812-2022-203</a>.</p>
 </article>
 <article>
-<h2>2. Merawat AC mobil yang dipakai macet harian</h2>
+<h3>Merawat AC mobil yang dipakai macet harian</h3>
 <p>Rute Bojongsoang Dayeuhkolot sering macet pagi dan sore, AC kerja keras. Tandanya perlu diservis: hembusan kurang dingin saat berhenti tapi dingin saat jalan, atau ada bau saat pertama dinyalakan. Cuci AC dan ganti filter kabin tiap 6 bulan menjaga kabin tetap sejuk untuk anak.</p>
 </article>
+
 <p class="alt">Butuh servis? Lihat <a href="/layanan">layanan kami</a> atau chat langsung via WhatsApp.</p>
 </main>
 <Footer /><WhatsAppFloat />
+<script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
 </BaseLayout>
 <style>
 .page { padding-block: 2rem 3rem; max-width: 760px; }
 .page h1 { font-size: clamp(1.6rem,4vw,2.4rem); color: var(--color-navy); }
 .page h2 { margin-top: 1.6rem; color: var(--color-navy); font-size: 1.2rem; }
+.page h3 { margin: 0 0 .4rem; color: var(--color-navy); font-size: 1.05rem; }
 .page p { line-height: 1.75; color: var(--color-navy-soft); }
 .page nav { font-size: .85rem; margin-bottom: 1rem; }
 article { background: var(--color-card); border-radius: 14px; padding: 1.2rem 1.4rem; box-shadow: var(--shadow-rest); margin-top: 1rem; }
+.kartu-artikel h2 { margin-top: 0; font-size: 1.15rem; }
+.kartu-artikel h2 a { color: var(--color-navy); text-decoration: none; }
+.kartu-artikel h2 a:hover { color: var(--color-primary); }
+.chip { display: inline-block; margin: 0 0 .5rem; padding: .2rem .7rem; border-radius: var(--radius-pill); background: var(--color-wash); color: var(--color-wash-deep); font-family: var(--font-label); font-size: .75rem; font-weight: 700; }
+.baca { margin-top: .75rem; margin-bottom: 0; }
+.baca a { color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: .9rem; }
 .alt { margin-top: 1.4rem; }
 </style>

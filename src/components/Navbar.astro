@@ -4,18 +4,23 @@ import { SITE, waLink } from "../data/site";
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
 
+// Anchor jadi absolut di halaman dalam supaya link tetap benar
+// (pola sama dengan Footer dan Website2).
+const isHome = Astro.url.pathname === "/";
+const base = isHome ? "" : "/";
+
 const MENU = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang", href: "#tentang" },
-  { label: "Layanan", href: "#layanan" },
-  { label: "Galeri", href: "#galeri" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Beranda", href: `${base}#beranda` },
+  { label: "Tentang", href: `${base}#tentang` },
+  { label: "Layanan", href: `${base}#layanan` },
+  { label: "Galeri", href: `${base}#galeri` },
+  { label: "Kontak", href: `${base}#kontak` },
 ];
 ---
 
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
-    <a href="#beranda" class="brand" aria-label={`${SITE.name}, kembali ke atas`}>
+    <a href={`${base}#beranda`} class="brand" aria-label={`${SITE.name}, kembali ke beranda`}>
       <Logo size={42} />
       <span class="brand-text">
         <span class="brand-name">Sinar Surya</span>

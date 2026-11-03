@@ -1,0 +1,141 @@
+/* ============================================================
+   halaman.css — style bersama untuk halaman konten dalam baru
+   (halaman layanan dedikasi + artikel tips).
+   Nama class .inner-page sengaja dipakai agar tidak bentrok
+   dengan .page milik halaman lama yang ber-style scoped.
+   ============================================================ */
+
+.inner-page {
+  padding-block: 2rem 3rem;
+  max-width: 760px;
+}
+
+.inner-page .crumbs {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: var(--color-navy-soft);
+}
+
+.inner-page .crumbs a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.inner-page .crumbs a:hover {
+  text-decoration: underline;
+}
+
+.inner-page h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.25;
+  color: var(--color-navy);
+}
+
+.inner-page .lead {
+  margin-top: 0.75rem;
+  font-size: 1.03rem;
+  line-height: 1.75;
+  color: var(--color-navy-soft);
+}
+
+.inner-page h2 {
+  margin-top: 1.9rem;
+  font-size: 1.3rem;
+  color: var(--color-navy);
+}
+
+.inner-page h3 {
+  color: var(--color-navy);
+}
+
+.inner-page p,
+.inner-page li {
+  line-height: 1.75;
+  color: var(--color-navy-soft);
+}
+
+.inner-page ul,
+.inner-page ol {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.inner-page strong {
+  color: var(--color-navy);
+}
+
+.inner-page figure {
+  margin: 1.5rem 0 0;
+}
+
+.inner-page figure img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.inner-page figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--color-navy-soft);
+}
+
+/* FAQ teks (tanpa accordion, tanpa FAQPage JSON-LD di level halaman) */
+.faq-list {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.faq-item {
+  background: var(--color-card);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--shadow-rest);
+}
+
+.faq-item h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Kotak CTA penutup */
+.cta-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--color-wash);
+  border-radius: var(--radius-card-lg);
+  text-align: center;
+}
+
+.cta-box h2 {
+  margin-top: 0;
+}
+
+.cta-box p {
+  margin-bottom: 1.1rem;
+}
+
+/* Catatan kecil (jam operasional, info slot) */
+.note-box {
+  margin-top: 1.2rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--color-card);
+  border-radius: 14px;
+  box-shadow: var(--shadow-rest);
+  font-size: 0.95rem;
+}
+
+.inner-page .alt {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}

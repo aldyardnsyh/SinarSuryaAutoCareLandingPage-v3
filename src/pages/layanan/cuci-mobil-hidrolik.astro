@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/cuci-mobil-hidrolik-bojongsoang-lift-hidrolik.jpg";
+
+const path = "/layanan/cuci-mobil-hidrolik";
+const title = "Cuci Mobil Hidrolik Bojongsoang & Bandung Selatan | Sinar Surya Auto Care";
+const description =
+  "Cuci mobil hidrolik di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Mobil diangkat lift, bagian bawah dan kolong ikut tercuci bersih. Buka setiap hari 07.00-17.00, tanya harga via WhatsApp 0812-2022-203.";
+const wa = waLink("Saya mau tanya harga cuci mobil hidrolik.");
+const crumbs = breadcrumb([{ name: "Cuci Mobil Hidrolik", path }]);
+const svc = servicePage({
+  path,
+  name: "Cuci Mobil Hidrolik",
+  serviceType: "Cuci mobil dengan lift hidrolik: bodi, kolong, dan bagian bawah kendaraan",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Cuci Mobil Hidrolik
+    </nav>
+    <h1>Cuci Mobil Hidrolik di Bojongsoang, Bersih Sampai Bagian Bawah</h1>
+    <p class="lead">
+      Cuci biasa hanya membersihkan bodi yang terlihat. Di Sinar Surya Auto Care,
+      mobil Anda diangkat dengan lift hidrolik dulu, jadi bagian bawah, kolong,
+      dan sela-sela kaki-kaki ikut tercuci. Cocok untuk mobil keluarga yang harian
+      melewati jalan berlumpur atau banjir ringan di rute Bojongsoang, Dayeuhkolot,
+      dan sekitarnya.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Mobil diangkat lift hidrolik saat dicuci bagian bawah di Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Mobil pelanggan terangkat penuh, kolongnya ikut tersiram bersih.</figcaption>
+    </figure>
+
+    <h2>Apa saja yang dikerjakan</h2>
+    <ul>
+      <li><strong>Bodi dan eksterior:</strong> bilas, busa, lap detail sampai kaca, spion, dan velg.</li>
+      <li><strong>Bagian bawah (kolong):</strong> mobil diangkat lift hidrolik, undersill dan lumpur yang menempel di kolong tersiram bersih.</li>
+      <li><strong>Roda dan rumah roda:</strong> sela-sela velg dan rem dibersihkan, bukan sekadar disikat sepintas.</li>
+      <li><strong>Interior singkat:</strong> vacuum lantai dan jok, lap dashboard.</li>
+      <li><strong>Pengeringan teliti:</strong> digosok kering supaya tidak ada bercak air yang mengering di bodi.</li>
+    </ul>
+
+    <h2>Kapan mobil perlu dicuci hidrolik</h2>
+    <p>
+      Kalau mobil Anda baru lewat genangan atau jalan tanah, ada lumpur mengering
+      di penggerak, atau sudah lama hanya dicuci bodi saja, ini waktunya yang
+      tepat. Lumpur di bagian bawah kalau dibiarkan bisa memicu bau lembap di
+      kabin dan mempercepat karat pada bagian yang jarang terlihat. Untuk mobil
+      harian komuter Bojongsoang, banyak pelanggan kami jadwalkan cuci hidrolik
+      sebulan sekali, lalu cuci biasa di sela-selanya.
+    </p>
+
+    <h2>Alur pengerjaan di bengkel kami</h2>
+    <ol>
+      <li>Mobil masuk, dicek dulu kondisi bodinya bersama pemiliknya.</li>
+      <li>Bilas pertama untuk meluruhkan kotoran kasar supaya tidak menggores cat saat dilap.</li>
+      <li>Mobil diangkat lift hidrolik, bagian bawah disiram dan disikat.</li>
+      <li>Bodi dicuci dengan busa, detail sela-sela, lalu dibilas ulang.</li>
+      <li>Dikeringkan dengan lap microfiber, interior divacuum, mobil siap diambil.</li>
+    </ol>
+
+    <h2>Kenapa mampir ke Sinar Surya Auto Care</h2>
+    <p>
+      Bengkel kami di Jl. Cijagra No.8, Bojongsoang, mudah dicapai dari
+      Dayeuhkolot, Baleendah, dan Buahbatu. Area cuci dan parkirnya lega,
+      tempat tunggunya nyaman untuk anak, dan cuci buka setiap hari termasuk
+      Minggu, pukul 07.00 sampai 17.00. Sementara menunggu, mobil bisa
+      sekalian diperiksa keluhannya oleh teknisi kami.
+    </p>
+    <p class="note-box">
+      <strong>Info jam:</strong> cuci dan steam buka setiap hari 07.00-17.00.
+      Servis dan perbaikan mobil hanya Senin sampai Sabtu.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Berapa lama proses cuci hidrolik?</h3>
+        <p>
+          Tergantung antrean dan tingkat kotorannya, tapi umumnya mobil keluarga
+          selesai dalam waktu yang wajar untuk dicuci ulang hari yang sama.
+          Kalau mau datang di jam yang tidak terlalu ramai, chat dulu via
+          WhatsApp untuk tanya antrean.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Mobil dengan ground clearance rendah aman diangkat?</h3>
+        <p>
+          Aman. Lift hidroliknya mengangkat dari titik yang sesuai, dan
+          operator kami terbiasa menangani berbagai tipe mobil dari city car
+          sampai SUV keluarga.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Bisa sekalian steam wash interior?</h3>
+        <p>
+          Bisa. Banyak pelanggan menggabungkan cuci hidrolik dengan
+          <a href="/layanan/steam-wash-interior">steam wash interior</a> supaya
+          kabin juga bersih dan bebas bau, sekali datang selesai semuanya.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Mau tanya harga atau antrean hari ini?</h2>
+      <p>Chat WhatsApp kami, jawabannya cepat dan langsung dari bengkelnya.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/layanan/steam-wash-interior">steam wash interior</a>,
+      <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>, dan
+      <a href="/area/buahbatu">area yang kami layani</a>. Untuk info cuci dan
+      steam area Kota Bandung, kunjungi
+      <a href="https://www.bengkelmobilbandung.biz.id" target="_blank" rel="noopener">bengkelmobilbandung.biz.id</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

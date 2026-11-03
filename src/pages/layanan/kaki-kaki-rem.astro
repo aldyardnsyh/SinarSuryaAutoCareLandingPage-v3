@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/servis-perbaikan-lift-bojongsoang.jpg";
+
+const path = "/layanan/kaki-kaki-rem";
+const title = "Bengkel Kaki-kaki & Rem Mobil Bojongsoang | Sinar Surya Auto Care";
+const description =
+  "Perbaikan kaki-kaki dan rem mobil di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Shockbreaker, tie rod, kampas rem, dan bunyi aneh dicek teliti di lift. Senin-Sabtu 07.00-17.00. WA 0812-2022-203.";
+const wa = waLink("Saya mau tanya perbaikan kaki-kaki atau rem.");
+const crumbs = breadcrumb([{ name: "Kaki-kaki & Rem", path }]);
+const svc = servicePage({
+  path,
+  name: "Perbaikan Kaki-kaki & Rem Mobil",
+  serviceType: "Perbaikan kaki-kaki: suspensi, shockbreaker, tie rod, balljoint, dan sistem rem",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Kaki-kaki &amp; Rem
+    </nav>
+    <h1>Bengkel Kaki-kaki &amp; Rem Mobil di Bojongsoang</h1>
+    <p class="lead">
+      Jalan rusak dan speed bump hampir di setiap komplek membuat kaki-kaki
+      mobil keluarga bekerja keras setiap hari. Kalau mulai terdengar bunyi
+      duk-duk, setir terasa tarik ke satu sisi, atau rem terasa kurang mantap,
+      jangan diteruskan. Kaki-kaki dan rem adalah bagian yang berhubungan
+      langsung dengan keselamatan keluarga Anda.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Mobil diangkat lift hidrolik untuk pemeriksaan kaki-kaki di bengkel Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Mobil terangkat di lift, bagian bawah dan kaki-kakinya diperiksa satu per satu.</figcaption>
+    </figure>
+
+    <h2>Apa saja yang dikerjakan</h2>
+    <ul>
+      <li><strong>Suspensi dan shockbreaker:</strong> dicek kebocorannya, mobil yang melompat-lompat atau bunyi di jalan rusak dibuat kembali stabil.</li>
+      <li><strong>Tie rod dan balljoint:</strong> penyebab paling umum setir getar dan bunyi saat belok.</li>
+      <li><strong>Sistem rem:</strong> kampas, cakram, dan tromol dicek ketebalannya; minyak rem dicek level dan umurnya.</li>
+      <li><strong>Pemeriksaan di lift:</strong> mobil diangkat, jadi bagian bawah benar-benar terlihat, bukan diduga dari bera saja.</li>
+      <li><strong>Spooring dan balancing saat perlu:</strong> kalau setir masih tarik atau ban aus tidak merata setelah pengerjaan.</li>
+    </ul>
+
+    <h2>Tanda kaki-kaki atau rem perlu dicek</h2>
+    <ul>
+      <li>Bunyi duk-duk atau kretek dari roda saat lewat jalan tidak rata.</li>
+      <li>Setir bergetar di kecepatan tertentu, atau tarik ke satu sisi.</li>
+      <li>Pedal rem terasa lebih dalam, kurang mantap, atau ada suara decit.</li>
+      <li>Mobil bergoyang ekstra saat melewati speed bump.</li>
+      <li>Ban aus tidak merata: sebelah gundul, sebelah masih tebal.</li>
+    </ul>
+    <p>
+      Rem yang mulai menurun kadang tidak terasa drastis, tapi turunnya perlahan
+      setiap minggu. Karena itu banyak pelanggan kami menggabungkan pemeriksaan
+      kaki-kaki dan rem dengan <a href="/layanan/servis-rutin-tune-up">servis rutin</a>,
+      sekali datang dua urusan selesai.
+    </p>
+
+    <h2>Alur pengerjaan</h2>
+    <ol>
+      <li>Ceritakan bunyi atau perasaan anehnya: kapan muncul, saat belok atau saat rem.</li>
+      <li>Mobil diuji jalan ringan bila perlu, lalu diangkat lift untuk pemeriksaan bagian bawah.</li>
+      <li>Komponen yang wajib diganti dan yang masih tahan dijelaskan terpisah, lengkap dengan perkiraan biayanya.</li>
+      <li>Setelah pengerjaan, mobil diuji ulang dan dicek bersama sebelum diambil.</li>
+    </ol>
+    <p class="note-box">
+      <strong>Info jam:</strong> perbaikan kaki-kaki dan rem menerima mobil
+      Senin sampai Sabtu, 07.00-17.00. Pekerjaan kaki-kaki waktunya bisa lebih
+      lama, chat dulu via WhatsApp supaya slotnya aman.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Kampas rem masih atau sudah ganti?</h3>
+        <p>
+          Karena mobil diangkat di lift, ketebalan kampas dan kondisi cakram
+          bisa ditunjukkan langsung ke Anda. Tidak perlu menebak dari suara
+          saja, keputusannya berdasar kondisi aslinya.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Setir getar selalu berarti kaki-kaki?</h3>
+        <p>
+          Sering, tapi tidak selalu. Bisa juga dari ban yang bengkok atau
+          butuh balancing. Karena itu diperiksa dulu penyebabnya, baru
+          dikerjakan yang memang perlu.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Bisa sekalian cuci sambil diperbaiki?</h3>
+        <p>
+          Bisa. Selagi kaki-kakinya dikerjakan, mobil bisa sekalian
+          <a href="/layanan/cuci-mobil-hidrolik">dicuci hidrolik</a> sampai
+          kolongnya bersih, cocok sekali karena bagian bawahnya memang sedang terbuka.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Ada bunyi aneh? Ceritakan dulu, gratis.</h2>
+      <p>Deskripsikan keluhannya via WhatsApp, kami bantu perkirakan letaknya.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>,
+      <a href="/layanan/ganti-oli">ganti oli &amp; filter</a>, dan
+      <a href="/area/baleendah">area yang kami layani</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { breadcrumb, servicePage } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/perbaikan-mesin-toyota-bojongsoang.jpg";
+
+const path = "/layanan/ganti-oli";
+const title = "Ganti Oli Mobil Bojongsoang | Sinar Surya Auto Care";
+const description =
+  "Ganti oli mesin, oli matic, dan filter di Jl. Cijagra No.8, Bojongsoang, Kab. Bandung. Rekomendasi oli sesuai tipe mobil dan kebiasaan pakai. Servis Senin-Sabtu 07.00-17.00. WA 0812-2022-203.";
+const wa = waLink("Saya mau tanya harga ganti oli dan filter.");
+const crumbs = breadcrumb([{ name: "Ganti Oli & Filter", path }]);
+const svc = servicePage({
+  path,
+  name: "Ganti Oli & Filter Mobil",
+  serviceType: "Penggantian oli mesin, oli transmisi, dan filter sesuai spesifikasi kendaraan",
+  description,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/layanan">Layanan</a> / Ganti Oli &amp; Filter
+    </nav>
+    <h1>Ganti Oli Mobil di Bojongsoang</h1>
+    <p class="lead">
+      Oli adalah pengorbanan kecil yang paling menolong mesin. Di Sinar Surya
+      Auto Care, ganti oli bukan sekadar buang-tuang: tipe mobil dan kebiasaan
+      pemakaiannya ditanya dulu, lalu oli dan filternya direkomendasikan yang
+      sesuai. Semua dikerjakan di Jl. Cijagra No.8, Bojongsoang, sambil Anda
+      tunggu di tempat yang nyaman.
+    </p>
+    <figure>
+      <Picture
+        src={foto}
+        alt="Ruang mesin mobil pelanggan saat pengerjaan di bengkel Sinar Surya Auto Care Bojongsoang"
+        formats={["avif", "webp"]}
+        widths={[420, 640, 760]}
+        sizes="(max-width: 760px) 92vw, 760px"
+        loading="eager" />
+      <figcaption>Pengerjaan di ruang mesin mobil pelanggan, dicek sambil jalan.</figcaption>
+    </figure>
+
+    <h2>Yang dikerjakan saat ganti oli</h2>
+    <ul>
+      <li><strong>Oli mesin:</strong> oli lama dibuang sampai bersih, oli baru sesuai tipe dan viskositas yang cocok untuk mesin Anda.</li>
+      <li><strong>Filter oli:</strong> ikut diganti, karena filter yang jenuh bikin oli baru cepat kotor lagi.</li>
+      <li><strong>Oli transmisi (matic/manual):</strong> dicek level dan kondisinya, diganti bila memang waktunya.</li>
+      <li><strong>Cairan pendukung:</strong> coolant, minyak rem, dan power steering dites sekalian, ada yang kurang langsung dilengkapi.</li>
+      <li><strong>Cek kebocoran ringan:</strong> area bawah mesin diperhatikan, kalau ada rembes disampaikan sejak dini.</li>
+    </ul>
+
+    <h2>Kapan oli perlu diganti</h2>
+    <p>
+      Patokan paling aman adalah buku manual mobil: ada batas jarak tempuh dan
+      ada batas waktu, ambil yang tercapai duluan. Mobil yang harian macet di
+      rute Bojongsoang, sering jarak pendek, atau sering bawa beban berat
+      termasuk pemakaian berat, jadwalnya perlu lebih rapat. Kalau tidak
+      yakin, foto dashboard dan km Anda, kirim via WhatsApp, kami bantu
+      perkirakan.
+    </p>
+
+    <h2>Alur pengerjaan</h2>
+    <ol>
+      <li>Ceritakan tipe mobil dan kapan terakhir ganti oli.</li>
+      <li>Kami rekomendasikan oli dan filter yang sesuai, beserta perkiraan biayanya.</li>
+      <li>Setelah disetujui, mobil dinaikkan, oli lama dibuang sampai bersih, filter baru dipasang.</li>
+      <li>Level oli dicek ulang saat mesin hidup, bocor dicek, mobil siap pulang.</li>
+    </ol>
+    <p class="note-box">
+      <strong>Info jam:</strong> ganti oli dan pekerjaan servis lainnya
+      Senin sampai Sabtu, 07.00-17.00. Datang pagi biasanya paling cepat
+      selesai. Sambil ganti oli, mobil bisa sekalian dicuci.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Bisa bawa oli sendiri?</h3>
+        <p>
+          Bisa. Kami kerjakan sesuai oli yang Anda bawa, dan tetap kami cek
+          kecocokannya dengan mesin mobil Anda sebelum dipakai.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Ganti oli sekalian tune up?</h3>
+        <p>
+          Bisa digabung. Banyak pelanggan menjadwalkan keduanya di kunjungan
+          yang sama supaya tidak bolak-balik. Lihat halaman
+          <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>
+          untuk gambaran pekerjaannya.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Oli matic ikut diganti juga?</h3>
+        <p>
+          Kapan waktunya beda-beda tiap mobil. Kami cek dulu kondisi dan
+          levelnya; kalau masih layak, kami sampaikan jujur dan ditandai
+          untuk jadwal berikutnya, tidak perlu yang tidak diperlukan.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h2>Tanya oli yang cocok untuk mobil Anda</h2>
+      <p>Kirim tipe mobil dan km Anda, kami rekomendasikan yang pas.</p>
+      <a class="btn btn-primary" href={wa} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>,
+      <a href="/layanan/kaki-kaki-rem">kaki-kaki &amp; rem</a>, dan
+      <a href="/tips/jadwal-perawatan-mobil">jadwal perawatan mobil berkala</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
+</BaseLayout>

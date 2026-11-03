@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { waLink } from "../../data/site";
+import { articlePage, breadcrumb } from "../../lib/seo";
+import "../../styles/halaman.css";
+
+const path = "/tips/jadwal-perawatan-mobil";
+const title = "Jadwal Perawatan Mobil Berkala yang Realistis | Sinar Surya Auto Care";
+const description =
+  "Panduan jadwal perawatan mobil berkala: oli, filter, ban, AC, dan kaki-kaki, dengan patokan km maupun kalender. Ditulis dari pengalaman bengkel di Bojongsoang, Bandung.";
+const TANGGAL = "2026-11-03";
+const crumbs = breadcrumb([{ name: "Tips Mobil", path: "/tips" }, { name: "Jadwal Perawatan Mobil", path }]);
+const artikel = articlePage({
+  path,
+  headline: "Jadwal Perawatan Mobil Berkala yang Realistis",
+  description,
+  datePublished: TANGGAL,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/tips">Tips Mobil</a> / Jadwal Perawatan
+    </nav>
+    <article>
+      <h1>Jadwal Perawatan Mobil Berkala yang Realistis</h1>
+      <p class="lead">
+        Pertanyaan yang paling sering masuk ke WhatsApp kami: "mobil saya harus
+        diservis tiap berapa km sih?" Jawaban jujurnya: patokan terbaik ada di
+        buku manual mobil Anda. Tapi karena tidak semua orang sempat
+        membukanya, ini ringkasan patokan yang biasa kami pakai untuk mobil
+        keluarga, plus penyesuaiannya untuk mobil yang harian macet di rute
+        Bojongsoang.
+      </p>
+
+      <h2>Patokan umum per bagian</h2>
+      <ul>
+        <li><strong>Oli mesin dan filter oli:</strong> ikuti rekomendasi manual, umumnya antara 5.000 sampai 10.000 km. Yang sering terlewat adalah batas waktunya: mobil yang jarang dipakai tetap perlu ganti oli karena oli juga menua.</li>
+        <li><strong>Filter udara:</strong> cek tiap ganti oli, ganti bila sudah gelap dan buntu. Jalanan berdebu membuatnya cepat jenuh.</li>
+        <li><strong>Filter kabin dan cuci AC:</strong> sekitar tiap 6 bulan untuk kabin yang tetap segar dan bebas bau.</li>
+        <li><strong>Ban:</strong> tekanan angin dicek minimal dua minggu sekali, rotasi tiap 10.000 km. Umur pakai ban lazimnya di bawah 5 tahun, tapi keausan dan umur retakan dinding ban yang menentukan.</li>
+        <li><strong>Rem dan kaki-kaki:</strong> dicek tiap servis rutin. Tidak ada jadwal pasti, karena sangat tergantung kebiasaan jalan dan beban.</li>
+        <li><strong>Aki:</strong> umurnya biasanya 1,5 sampai 3 tahun. Tanda awal: starter terasa berat dan lampu redup saat idle.</li>
+      </ul>
+
+      <h2>Km atau kalender? Ambil yang tercapai duluan</h2>
+      <p>
+        Prinsipnya sederhana: setiap item punya dua batas, jarak dan waktu.
+        Oli tertulis 10.000 km tapi mobil Anda belum mencapai setahun penuh?
+        Kalau batas waktunya duluan yang tercapai, tetap diganti. Ini berlaku
+        juga untuk cairan lain seperti coolant dan minyak rem yang memang
+        punya batas kalender.
+      </p>
+
+      <h2>Catatan khusus mobil macet harian</h2>
+      <p>
+        Mobil yang tiap hari melewati macetan Bojongsoang ke arah Bandung
+        bekerja lebih berat dari yang tercatat di odometer. Mesin tetap hidup
+        padahal mobil berhenti, AC bekerja terus, dan rem dipakai lebih sering.
+        Untuk pola pakai seperti ini, jadwalnya wajar dibuat lebih rapat dari
+        patokan manual, terutama untuk oli, filter kabin, dan rem. Mobil yang
+        sering jarak pendek juga masuk kategori sama: mesin jarang sempat
+        mencapai suhu kerja optimal.
+      </p>
+
+      <h2>Cara paling gampang menjaga ritmenya</h2>
+      <p>
+        Tidak perlu menghafal semuanya. Cukup simpan satu catatan: tanggal dan
+        km terakhir kali ganti oli. Dari satu titik itu, semua jadwal lain bisa
+        diturunkan, dan teknisi yang memeriksa mobil Anda bisa
+        merekomendasikan sisanya. Kalau mau, kirim saja foto odometer dan
+        catatan servis terakhir Anda ke WhatsApp kami, kami bantu susun
+        jadwalnya, gratis dan tanpa dibebani beli apa pun dulu.
+      </p>
+      <p>
+        Bingung mulai dari mana? Mampir saja ke
+        <a href="/layanan/servis-rutin-tune-up">servis rutin &amp; tune up</a>
+        untuk pemeriksaan menyeluruh, atau baca dulu
+        <a href="/tips/tanda-ac-mobil-kurang-dingin">tanda AC mobil kurang dingin</a>
+        bila itu yang saat ini mengganjal.
+      </p>
+    </article>
+
+    <div class="cta-box">
+      <h2>Mau bantu susun jadwal servisnya?</h2>
+      <p>Kirim tipe mobil dan km terakhir Anda, kami bantu rapikan gratis.</p>
+      <a class="btn btn-primary" href={waLink("Halo, saya mau bantu susun jadwal servis untuk mobil saya.")} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/tips">semua tips mobil</a> dan
+      <a href="/layanan">layanan bengkel kami</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(artikel)} />
+</BaseLayout>

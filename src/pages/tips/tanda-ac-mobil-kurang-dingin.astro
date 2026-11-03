@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { waLink } from "../../data/site";
+import { articlePage, breadcrumb } from "../../lib/seo";
+import "../../styles/halaman.css";
+
+const path = "/tips/tanda-ac-mobil-kurang-dingin";
+const title = "Tanda AC Mobil Kurang Dingin dan Penyebab Umumnya | Sinar Surya Auto Care";
+const description =
+  "Hembusan melemah saat berhenti, bau apek, kaca berembun: kenali tanda AC mobil kurang dingin dan penyebab umumnya sebelum biaya perbaikannya membesar.";
+const TANGGAL = "2026-11-03";
+const crumbs = breadcrumb([{ name: "Tips Mobil", path: "/tips" }, { name: "Tanda AC Mobil Kurang Dingin", path }]);
+const artikel = articlePage({
+  path,
+  headline: "Tanda AC Mobil Kurang Dingin dan Penyebab Umumnya",
+  description,
+  datePublished: TANGGAL,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/tips">Tips Mobil</a> / Tanda AC Kurang Dingin
+    </nav>
+    <article>
+      <h1>Tanda AC Mobil Kurang Dingin dan Penyebab Umumnya</h1>
+      <p class="lead">
+        AC mobil jarang rusak sekaligus. Dia menurun pelan-pelan: bulan lalu
+        masih dingin banget, bulan ini terasa "ah masih lumayan". Karena
+        menurunnya perlahan, banyak pemilik tidak sadar sampai kabin panas di
+        macetan. Ini tanda-tanda yang kami temukan paling sering di mobil
+        pelanggan, beserta penyebab yang bias muncul.
+      </p>
+
+      <h2>Tanda 1: dingin saat jalan, melemah saat berhenti</h2>
+      <p>
+        Ini pola klasik. Di jalan lancar hembusan tetap dingin, tapi begitu
+        berhenti di lampu merah atau macet, dinginnya turun. Penyebab yang
+        paling sering: kondensor yang kotor. Kondensor butuh angin dari
+        pergerakan mobil untuk membuang panas; kalau siramannya tersumbat
+        debu dan lumpur, saat mobil diam panasnya menumpuk dan dinginnya
+        turun. Pekerjaannya biasanya selesai di tahap
+        <a href="/layanan/service-ac-mobil">cuci AC</a>, belum sampai ganti komponen.
+      </p>
+
+      <h2>Tanda 2: muncul bau apek atau anyir saat dinyalakan</h2>
+      <p>
+        Bau apek biasanya dari evaporator dan filter kabin yang lembap,
+        tempat berkembangnya lumut dan kuman. Bau anyir ke arah tai
+        kelinci menandakan kebocoran di pemanas (heater core) atau sistem
+        pendingin yang ikut mengganggu. Bau makanan memang bisa dari
+        makanan, tapi kalau terus muncul tiap AC aktif, kemungkinan besar
+        berasal dari kabin yang lembap, bukan sisa snack.
+      </p>
+
+      <h2>Tanda 3: kaca berembun dan susah hilang saat hujan</h2>
+      <p>
+        AC tidak hanya mendinginkan, dia juga mengeringkan udara di kabin.
+        Kalau kaca depan berembun dan butuh lama untuk hilang, biasanya
+        penguapan di evaporator tidak bekerja optimal, atau mode
+        pemanasan/pencairan bermasalah. Tanda ini sering diabaikan karena
+        dinginnya masih "masih", padahal itu tanda awal penurunan.
+      </p>
+
+      <h2>Tanda 4: butuh waktu lama baru dingin, atau tidak merata</h2>
+      <p>
+        Sisi pengemudi dingin, sisi penumpang kurang. Atau AC baru dingin
+        setelah 10 menit jalan. Ini bisa dari freon yang mulai berkurang
+        karena kebocoran kecil, dari seal yang menua, atau dari blend door
+        (penyebar udara) yang tidak bekerja penuh. Yang penting diperiksa:
+        kalau memang freon berkurang, cari titik bocornya. Mengisi ulang
+        tanpa memperbaiki bocornya cuma menunda masalah yang sama.
+      </p>
+
+      <h2>Tanda 5: suara aneh saat AC aktif</h2>
+      <p>
+        Suara desing pendek saat dinyalakan, bunyi gemuruh dari ruang mesin,
+        atau bunyi dari dalam kabin saat AC bekerja, semuanya layak dicek.
+        Magnet clutch yang mulai lemah dan bearing yang rusak biasanya
+        mengumumkan diri lewat suara jauh sebelum AC benar-benar mati.
+      </p>
+
+      <h2>Kesimpulan singkat</h2>
+      <p>
+        Dari semua tanda di atas, sebagian besar berakhir di pengerjaan yang
+        ringan asalkan dicek lebih awal: cuci AC, ganti filter kabin, isi
+        freon yang sesuai ukuran, atau tutup kebocorannya. Yang mahal biasanya
+        bukan masalahnya, tapi lamanya dibiarkan. Kalau mobil Anda menunjukkan
+        satu dari tanda-tanda itu, ceritakan saja gejalanya ke
+        <a href="/layanan/service-ac-mobil">layanan service AC kami</a>, gratis
+        konsultasinya, dan teknisi kami bantu perkirakan penyebabnya.
+      </p>
+    </article>
+
+    <div class="cta-box">
+      <h2>AC Anda menunjukkan tanda di atas?</h2>
+      <p>Ceritakan gejalanya via WhatsApp, kami bantu perkirakan penyebabnya.</p>
+      <a class="btn btn-primary" href={waLink("Halo, AC mobil saya kurang dingin. Mau tanya perbaikannya.")} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/tips">semua tips mobil</a> dan
+      <a href="/tips/jadwal-perawatan-mobil">jadwal perawatan mobil berkala</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(artikel)} />
+</BaseLayout>

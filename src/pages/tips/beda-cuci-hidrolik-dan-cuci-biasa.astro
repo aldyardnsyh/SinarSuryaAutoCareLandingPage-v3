@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopInfoBar from "../../components/TopInfoBar.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+import { Picture } from "astro:assets";
+import { waLink } from "../../data/site";
+import { articlePage, breadcrumb } from "../../lib/seo";
+import "../../styles/halaman.css";
+import foto from "../../assets/photos/cuci-mobil-busa-bojongsoang.jpg";
+
+const path = "/tips/beda-cuci-hidrolik-dan-cuci-biasa";
+const title = "Bedanya Cuci Mobil Hidrolik dan Cuci Biasa | Sinar Surya Auto Care";
+const description =
+  "Cuci biasa membersihkan bodi, cuci hidrolik mengangkat mobil di lift supaya kolong ikut tercuci. Ini bedanya dan kapan mobil Anda butuh yang mana.";
+const TANGGAL = "2026-11-03";
+const crumbs = breadcrumb([{ name: "Tips Mobil", path: "/tips" }, { name: "Beda Cuci Hidrolik dan Cuci Biasa", path }]);
+const artikel = articlePage({
+  path,
+  headline: "Bedanya Cuci Mobil Hidrolik dan Cuci Biasa",
+  description,
+  datePublished: TANGGAL,
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <TopInfoBar /><Navbar />
+  <main id="konten-utama" class="container inner-page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a> / <a href="/tips">Tips Mobil</a> / Beda Cuci Hidrolik dan Cuci Biasa
+    </nav>
+    <article>
+      <h1>Bedanya Cuci Mobil Hidrolik dan Cuci Biasa</h1>
+      <p class="lead">
+        Dari luar memang sama-sama "mobil jadi bersih". Tapi hasil akhirnya
+        beda jauh, terutama di bagian yang tidak terlihat saat mobil berdiri
+        di tanah. Ini penjelasan singkat dari pengalaman kami menggarap mobil
+        di Bojongsoang, supaya Anda tahu kapan cukup cuci biasa dan kapan
+        butuh yang namanya cuci hidrolik.
+      </p>
+      <figure>
+        <Picture
+          src={foto}
+          alt="Mobil dilapisi busa saat dicuci di area wash Sinar Surya Auto Care Bojongsoang"
+          formats={["avif", "webp"]}
+          widths={[420, 640, 760]}
+          sizes="(max-width: 760px) 92vw, 760px"
+          loading="eager" />
+        <figcaption>Tahap bilas dan busa: sama di semua jenis cuci, bedanya di bagian bawah.</figcaption>
+      </figure>
+
+      <h2>Cuci biasa: bagian yang terlihat saja</h2>
+      <p>
+        Di cuci biasa, mobil tetap berdiri di tanah. Yang terjangkau pembersihan
+        adalah bodi, kaca, velg bagian luar, dan sedikit sela roda. Sebagian
+        besar tempat cuci juga meng vacuum kabin. Untuk pemakaian sehari-hari
+        di kota, ini cukup rutin dilakukan, seminggu sekali atau dua minggu
+        sekali tergantung kondisi.
+      </p>
+      <p>
+        Masalahnya, kotoran paling membandel justru menempel di bagian bawah:
+        lumpur di kolong, sisa genangan di sisi bawah pintu, debu dan oli
+        yang menempel di komponen kaki-kaki. Bagian itu tidak terjangkau
+        semburan dari posisi mobil berdiri.
+      </p>
+
+      <h2>Cuci hidrolik: mobil diangkat, kolong ikut tercuci</h2>
+      <p>
+        Di <a href="/layanan/cuci-mobil-hidrolik">cuci hidrolik</a>, mobil
+        diangkat dengan lift. Bagian bawah yang biasanya tersembunyi kini
+        menghadap ke bawah, terbuka penuh untuk disiram dan disikat. Lumpur
+        yang menempel di kolong, sela-sela kaki-kaki, dan rumah roda ikut
+        terangkat. Bagian bodi dikerjakan sama rapi seperti cuci biasa, jadi
+        hasilnya bersih dari dua sisi: atas dan bawah.
+      </p>
+      <p>
+        Untuk mobil keluarga yang harian melewati jalan berlumpur, genangan,
+        atau area konstruksi, cuci hidrolik sebulan sekali wajar dijadwalkan.
+        Lumpur di bagian bawah kalau dibiarkan memicu bau lembap dan
+        mempercepat karat di titik yang tidak terlihat, jadi mengangkat
+        mobil sekali-sekali itu perawatan, bukan gaya-gayaan.
+      </p>
+
+      <h2>Ringkasannya</h2>
+      <ul>
+        <li><strong>Cuci biasa:</strong> bodi dan kabin, rutin mingguan, murah dan cepat.</li>
+        <li><strong>Cuci hidrolik:</strong> bodi plus kolong, idealnya sebulan sekali untuk mobil harian, atau setiap selesai lewat banjir dan jalan tanah.</li>
+        <li><strong>Steam wash interior:</strong> pelengkap, untuk kabin yang bau atau bernoda; bisa digabung dengan keduanya.</li>
+      </ul>
+      <p>
+        Satu catatan terakhir: bagian bawah yang bersih juga memudahkan
+        pemeriksaan teknisi. Saat mobil diangkat, kebocoran dan kerusakan awal
+        di kaki-kaki jadi terlihat lebih cepat. Jadi cuci hidrolik itu sekaligus
+        kesempatan mengecek kesehatan mobil dari sisi yang jarang disentuh.
+      </p>
+    </article>
+
+    <div class="cta-box">
+      <h2>Mau coba cuci hidrolik untuk mobil Anda?</h2>
+      <p>Tanya antrean dan paketnya langsung via WhatsApp.</p>
+      <a class="btn btn-primary" href={waLink("Halo, saya mau tanya cuci mobil hidrolik untuk mobil saya.")} target="_blank" rel="noopener">Chat WhatsApp 0812-2022-203</a>
+    </div>
+    <p class="alt">
+      Lihat juga: <a href="/tips">semua tips mobil</a> dan
+      <a href="/layanan/steam-wash-interior">steam wash interior</a>.
+    </p>
+  </main>
+  <Footer /><WhatsAppFloat />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(artikel)} />
+</BaseLayout>
