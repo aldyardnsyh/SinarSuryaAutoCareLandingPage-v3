@@ -15,7 +15,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# dokumen internal (PRD, konsep, strategi) — tidak untuk repo publik
+# dokumen internal (PRD, konsep, strategi) - tidak untuk repo publik
 00-PRD-UTAMA.md
 01-konsep-website.md
 02-copywriting.md
@@ -24,3 +24,7 @@ Thumbs.db
 DESIGN.md
 code.html
 screen.png
+
+# workspace orkestrasi + brief maintenance - tidak untuk repo publik
+docs/
+Website3-bengkelmobilbojongsoang-brief.md
